@@ -1,0 +1,19 @@
+{
+  "name": "login-form",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "kumar815"
+  },
+  "keywords": [
+    "valid",
+    "login-form"
+  ],
+  "author": "Anandkumar P",
+  "license": "ISC"
+}
