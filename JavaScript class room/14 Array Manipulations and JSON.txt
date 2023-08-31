@@ -1,0 +1,168 @@
+Array Manipulations and JSON
+
+Reading Elements
+Adding Elements
+Removing Elements
+Sorting Elements
+Searching for Elements
+
+Ex: Array Manipulations
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Array Manipulations</title>
+   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+   <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   <script type="text/javascript">
+       let cities = ["Delhi", "Hyd"];
+       function LoadCities(){
+            document.getElementById("lstCities").innerHTML="";
+            cities.map(function(city){
+                var option = document.createElement("option");
+                option.text = city;
+                option.value = city;
+                document.getElementById("lstCities").appendChild(option);
+            })
+            document.getElementById("lblCount").innerHTML = `Total No of Cities : ${cities.length}`;
+       }
+       function bodyload(){
+          LoadCities();
+       }
+       function AddClick(){
+          var cityName = document.getElementById("txtCity").value;
+          var cityIndex = cities.indexOf(cityName);
+          if(cityIndex==-1){
+            cities.push(cityName);
+            alert(`${cityName} added to list`);
+            LoadCities();
+            document.getElementById("txtCity").value="";
+          } else {
+            alert(`${cityName} Exists`);
+          }
+       
+       }
+       function SortAsc(){
+          cities.sort();
+          LoadCities();
+       }
+       function SortDsc(){
+          cities.sort();
+          cities.reverse();
+          LoadCities();
+       }
+       function RemoveClick(){
+         
+         var selectedCity = document.getElementById("lstCities").value;
+         var flag = confirm(`Are you sure\n Want to Delete ${selectedCity}`);
+         var selectCityIndex = cities.indexOf(selectedCity);
+         if(flag==true){
+            cities.splice(selectCityIndex,1);
+            LoadCities();
+         }
+       }
+       function ClearClick(){
+          cities = [];
+          LoadCities();
+       }
+   </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+   <h3>Array Manipulations</h3>
+   <div class="w-25">
+      <div>
+         <label class="form-label fw-bold">New City</label>
+         <div class="input-group">
+            <input type="text" id="txtCity" class="form-control"><button onclick="AddClick()" class="btn btn-primary">Add</button>
+         </div>
+      </div>
+      <div class="mt-3">
+         <label class="form-label fw-bold">Cities List</label>
+         <div>
+            <div class="mb-3">
+               <button onclick="SortAsc()" class="btn btn-outline-success">
+                  <span class="bi bi-sort-alpha-down"></span>
+               </button>
+               <button onclick="SortDsc()" class="btn btn-outline-info">
+                  <span class="bi bi-sort-alpha-up"></span>
+               </button>
+            </div>
+            <select class="form-select" size="3" id="lstCities">
+
+            </select>
+            <label id="lblCount" class="form-label"></label>
+         </div>
+         <div>
+            <button onclick="RemoveClick()" class="btn btn-danger">
+               <span class="bi bi-trash"></span> Remove City
+            </button>
+            <button onclick="ClearClick()" class="btn btn-danger">
+               <span class="bi bi-trash-fill"></span> Clear All
+            </button>
+         </div>
+      </div>
+   </div>
+</body>
+</html>
+
+                                    Object Type
+- Object in computer programming is used to keep all related data and logic together.
+- "Alan Kay" introduced the concept of object in to computer programming in early 1960's.
+- Object is a Key and Value collection.
+- Key is string type and Value can be any type.
+- Key and Values are defined using " : "
+
+        "Key : value"            // value in reference of key
+        "Key=value"            // invalid
+
+- Multiple keys and values are separated with ","
+
+Syntax:
+            {
+             "Key" : value,
+             "Key" : value
+            }
+
+Syntax:
+        var obj =  { "Key": value,  "Key": value }
+
+- You can access the values with reference of object and key.
+
+Syntax:
+            obj.Key            [ . ]  is member invoking operator
+
+- You can access the keys within object by using "this" keyword.
+
+Syntax:
+        var obj  = {
+                     "Key1": value,
+                     "Key2": value,
+                      this.Key1
+                    }
+            obj.Key1
+
+- If object comprises of only "data" without any logic defined, then it is reffered as
+  "JSON" [JavaScript Object Notation]
+
+Ex:
+<script>
+     var tv = {
+                "Name": "Samsung TV",
+                "Price": 35000.33,
+                "Stock": true,
+                "Cities": ["Delhi", "Hyd"],
+                "Rating": {"Rate":4.2, "Count": 4600}
+              };
+              tv.Price = 56000.33;
+              tv.Stock = false;
+      document.write(`
+            Name    : ${tv.Name} <br>
+            Price   : ${tv.Price} <br>
+            Stock   : ${(tv.Stock==true)?"Available":"Out of Stock"} <br>
+            Cities  : ${tv.Cities.toString()} <br>
+            Rating  : ${tv.Rating.Rate} [${tv.Rating.Count}]
+      `);
+</script>

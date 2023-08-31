@@ -1,0 +1,48 @@
+JavaScript
+•
+- HTML
+- CSS
+- Bootstrap
+
+                                      JavaScript
+- JavaScript is light weight JIT [Just-in-Time] interpreted programming language.
+- JIT is the process of translating code in browser.
+- Interpreted is the process of line-by-line translation.
+- Several technologies use JavaScript with a compiler and AOT technique.
+- JavaScript compilers are : Babel & V8
+- AOT is Ahead-of-Time, code is compiled at application level.
+- JavaScript is language used in various application environments
+        a) Client Side        HTML, React, Angular, Vue..
+        b) Server Side        NodeJS
+        c) Database            MongoDB
+        d) Animations        Flash, 3DS Max, CAD systems
+- JavaScript supports various programming approaches
+        a) Functional Programming
+        b) Structural Programming
+        c) Imperative Programming
+        d) Object Oriented Programming etc..
+
+Note:  JavaScript is not an OOP language. It just supports only few features of OOP.
+
+                            JavaScript Client Side
+                            -----------------------------
+- JavaScript is used client side to reduce the burden on server.
+- It reduces round-trips.
+- It can reduce burden on server by handling various interactions client side.
+- JavaScript is used client side with HTML for:
+        1. DOM manipulations
+        2. Client Side Interactions
+        3. Client Side Validations
+- DOM Manipulation includes
+        a) Adding element into DOM
+        b) Removing element from DOM
+        c) Updating data into element
+- Client Side Interactions include
+        a) Location access
+        b) Navigator access
+        c) History access
+        d) Plugins, MIME Types etc..
+- Client Side Validation is the process of verifying user input to ensure that
+  contradictionary  and  unauthorized data is not get stored into database.
+
+Evolution of JS:

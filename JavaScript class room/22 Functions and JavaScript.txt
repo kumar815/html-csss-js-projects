@@ -1,0 +1,230 @@
+Functions and JavaScript
+
+JavaScript Functions
+
+- Functions are used to "refactor" the code.
+- Refactor is the process of encapsulating the code into one unit and extracting into a function or file.
+- Refactoring is required to re-use the logic.
+
+Function Configuration:
+- Function is configured by using "function" keyword.
+- It comprises of
+        a) Declaration
+        b) Expression
+
+- Declaration is the process of allocating memory for function, so that it can handle specific operation.
+
+Syntax:
+        function  Name()
+        {
+          statements;
+        }
+
+- Expression is the process of allocating memory for a function, where the functionality can change according to state and situation.
+
+Syntax:
+        var  Name = function() {        // initializing a function
+
+        }
+        Name = function() { }        // assigning a new function
+       
+Ex:
+<script>
+    var report;
+    var generateReport = prompt("Generate Report For:", "student|product");
+    if(generateReport==="student"){
+        report = function(){
+            document.write(`Name=John<br>Course=JavaScript<br>Sub=OOP`);
+        }
+    } else if(generateReport==="product"){
+        report = function(){
+            document.write(`Name=TV<br>Price=566000.33`);
+        }
+    } else {
+        report = function(){
+            document.write(`Report can be generated only for student or product`);
+        }
+    }
+    report();
+</script>
+
+- Every function comprises of 3 parts
+
+    a) Declaration
+    b) Signature
+    c) Definition
+
+Syntax:
+    function Print(params)
+    {
+    }
+
+    function Print(params)                => Declaration
+    Print(params)                        => Signature
+    { }                                        => Definition
+
+
+                                Function Parameters
+- Parameters are used to modify the function.
+
+Syntax:
+    function  Name(param)
+    {
+
+    }
+    Name(value);
+
+- The parameters passed into function declaration are known as "Formal Parameters".
+- The values passed into function signature are known as "Actual Parameters".
+
+Ex:
+    function Print(userName)
+    {
+        document.write(`Hello ! ${userName}`);
+    }
+    Print("John");
+
+            userName=John
+            [Formal] = [Actual]
+
+Ex:
+<script>
+     function PrintNumbers(howMany){
+        for(var i=1; i<=howMany; i++){
+            document.write(i + "<br>");
+        }
+     }
+     PrintNumbers(4);
+</script>
+
+- A function handle any type of parameter
+        a) Primitive
+        b) Non-Primitive
+        c) Function
+
+Syntax:
+     function  Name(a, b, c, d)
+     {
+     }
+
+    Name(1, "A", true, [ ]);
+
+        a = number,  b=string, c=boolean, d=Array
+
+Ex:
+<script>
+     function Details(id, name, stock, cities, rating, report)
+     {
+        document.write(`
+            Id = ${id} <br>
+            Name = ${name} <br>
+            Stock = ${stock} <br>
+            Cities = ${cities.join("-->")} <br>
+            Rating = ${rating.rate} [${rating.count}] <br>
+        `);
+        report();
+     }
+     Details(1, "TV", true, ["Delhi", "Hyd"], {rate:3.5, count:5600}, function(){document.write("Product Report Generated..");});
+
+</script>
+
+- Function can have max 1024 params. [Standards of ECMA]
+- JavaScript ES6 introduced "Rest and Spread" syntax.
+
+                                Rest Parameters
+- A single rest parameter in function can handle multiple arguments.
+- It is defined by using "...paramName".
+
+Syntax:
+        function Name(...paramName)
+        {
+        }
+        Name(arg1, arg2, arg3, arg4);
+
+        paramName[0]    = arg1
+        paramName[1]    = arg2...
+
+Ex:
+<script>
+     function Details(...product)
+     {
+        var [id, name, stock, cities, rating, report] = product;
+        document.write(`
+            Id = ${id} <br>
+            Name = ${name} <br>
+            Stock = ${stock} <br>
+            Cities = ${cities.join("-->")} <br>
+            Rating = ${rating.rate} [${rating.count}] <br>
+        `);
+        report();
+     }
+     Details(1, "Samsung TV", true, ["Delhi", "Hyd"], {rate:3.5, count:5600}, function(){document.write("Product Report Generated..");});
+
+</script>
+
+- Every function can have only one "rest" parameter.
+- You can define other parameters along with rest parameter.
+- Rest parameter must be the last parameter in formal list.
+
+Ex:
+<script>
+    function Details(title,...product){
+        var [id, name, price] = product;
+        document.write(`<h2>${title}</h2>Id=${id}<br>Name=${name}<br>Price=${price}`);
+    }
+    Details("Product Details",1, "TV", 45000.33);
+</script>
+
+                                   Spread Syntax
+- In "rest" formal parameter is one and args are many.
+- In "spread" formal parameters are many and args is one.
+
+Syntax:
+        function  Name(p1, p2, p3)
+        {
+        }
+        Name (...[10, 20, 30]);
+   
+        p1=10,  p2=20, p3=30
+
+FAQ: Why we need a function as parameter?
+Ans :  It is used for handling "Call Backs".
+         Callback is a technique where multiple functions are defined, but only one
+        executes according to situation.
+Ex:
+<script>
+    function FetchData(url, success, failure) {
+        if(url==="http://fakestoreapi.com&quot;){
+            success();
+        } else {
+            failure();
+        }
+    }
+    FetchData(
+        prompt("Enter URL"),
+        function(){
+            document.write("Data fetched successfully..");
+        },
+        function(){
+            document.write("Unable to fetch data - Invalid URL");
+        }
+    )
+</script>
+
+                                Anonymous Function
+- JavaScript can configure a function without Name, which is known as anonymous.
+- Anonymous functions are executed using IIFE pattern.
+  [Immediately Invoked Function Expression].
+
+Ex:
+<script>
+    (function(msg){
+        document.write(msg + "<br>");
+    })("Hello ! world");
+    var welcome = function(){
+        document.write("Welcome to JS");
+    }
+    welcome();
+</script>
+
+                                    Closure, Promise, Reccursion

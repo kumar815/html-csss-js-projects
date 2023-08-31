@@ -1,0 +1,352 @@
+Browser Events
+
+Events and Event Args
+- this
+- event
+
+Types of Events
+
+1. Mouse Events
+ - They are used to handle interactions with regard to mouse pointer and mouse button.
+
+- onmouseover
+- onmouseout
+- onmousedown
+- onmouseup
+- onmousemove
+
+Ex1:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function ShowPic1(){
+            document.getElementById("pic").src="../public/images/realme1.jpg";
+        }
+        function ShowPic2(){
+            document.getElementById("pic").src="../public/images/realme.jpg";
+        }
+    </script>
+</head>
+<body>
+    <marquee scrollamount="15" onmouseover="this.stop()" onmouseout="this.start()">
+        <img src="../public/images/a1.jpg" width="100" height="100">
+        <img src="../public/images/a2.jpg" width="100" height="100">
+        <img src="../public/images/a3.jpg" width="100" height="100">
+        <img src="../public/images/a4.jpg" width="100" height="100">
+    </marquee>
+    <div>
+        <img onmousedown="ShowPic1()" onmouseup="ShowPic2()" id="pic" src="../public/images/realme.jpg" width="200" height="300">
+        <p>Press hold down mouse button to change image</p>
+    </div>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+       function GetPosition(e){
+        var flag = document.getElementById("flag");
+        flag.style.position = "absolute";
+        flag.style.top = e.clientY + "px";
+        flag.style.left = e.clientX + "px";
+        document.querySelector("div").innerHTML = `x=${e.clientX} y=${e.clientY}`;
+       }
+    </script>
+</head>
+<body onmousemove="GetPosition(event)">
+   <div style="height: 1000px;"></div>
+   <img id="flag" src="../public/images/flag.gif" width="50" height="50">
+</body>
+</html>
+
+2. Key Board Events
+- They handle interactions with regard to key or keycode.
+
+- onkeyup
+- onkeydown
+- onkeypress
+
+Ex:
+1. data/users.json
+
+[
+    {
+        "UserName": "john_nit",
+        "Password": "john@123"
+    },
+    {
+        "UserName": "raj_hyd",
+        "Password": "raj11"
+    }
+]
+
+2. demo.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function VerifyCaps(e){
+            var warning = document.getElementById("warning");
+            if(e.keyCode>=65 && e.keyCode<=90){
+                warning.style.display = "block";
+            } else {
+                warning.style.display = "none";
+            }
+        }
+        function VerifyUser(){
+            var username = document.getElementById("UserName").value;
+            var userError = document.getElementById("userError");
+
+            fetch("../data/users.json")
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(users){
+                for(var user of users){
+                    if(user.UserName===username){
+                        userError.innerHTML = "User Name Taken - Try Another".fontcolor('red');
+                        break;
+                    } else {
+                        userError.innerHTML = "User Name Available".fontcolor('green');
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>User Name</dt>
+        <dd><input type="text" id="UserName" onkeyup="VerifyUser()"></dd>
+        <dd id="userError"></dd>
+        <dt>Your Password</dt>
+        <dd>
+            <input type="password" id="Password" onkeypress="VerifyCaps(event)">
+        </dd>
+        <dd id="warning" style="display: none;">Warning - Caps ON</dd>
+    </dl>
+</body>
+</html>
+
+3. Button Events
+- onclick                single click    
+- ondblclick            double click
+- oncontextmenu        right click
+- onselectstart            drag
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function ViewLarge(){
+            window.open("../public/images/aws.jpg","AWS","width=400 height=400");
+        }
+        document.oncontextmenu = function(){
+            alert("Rightclick Not allowed");
+            return false;
+        }
+        document.onselectstart = function(){
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <img ondblclick="ViewLarge()" src="../public/images/aws.jpg" width="100" height="100">
+    <p>Double click on image to view large</p>
+</body>
+</html>
+
+4. Clipboard Events
+
+- oncut
+- oncopy
+- onpaste
+
+Ex
+:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function Cut(){
+            document.getElementById("msg").innerHTML = "Removed and Copied to Clipboard";
+        }
+        function Copy(){
+            document.getElementById("msg").innerHTML = "Copied to Clipboard";
+        }
+        function Paste(){
+            document.getElementById("msg").innerHTML = "Inserted from Clipboard";
+        }
+        document.oncopy = function(){
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <p>Your comments</p>
+    <textarea oncut="Cut()" oncopy="Copy()" onpaste="Paste()" rows="5" cols="40"></textarea>
+    <p id="msg"></p>
+</body>
+</html>
+
+
+5. Element State Events
+- onchange
+- onfocus
+- onblur
+
+
+6. Touch Events
+- ontouchstart
+- ontouchend
+- ontouchmove
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function CourseTouched(course){
+            var msg = document.getElementById("msg");
+            switch(course){
+                case "ui":
+                msg.innerHTML = "UI Technologies - HTML, CSS, JavaScript";
+                break;
+                case "aws":
+                msg.innerHTML = "AWS - Cloud Computing - Virtual Servers, Virtual Database";
+                break;
+            }
+        }
+    </script>
+</head>
+<body>
+    <img ontouchstart="CourseTouched('ui')" src="../public/images/ui.jpg" width="100" height="100">
+    <img ontouchstart="CourseTouched('aws')" src="../public/images/aws.jpg" width="100" height="100">
+    <p id="msg"></p>
+</body>
+</html>
+
+7. Timer Events
+- setTimeout
+- setInterval
+- clearTimeout
+- clearInterval
+
+
+8. Form Events
+- onsubmit
+- onreset
+
+These events are defined for <form> element.
+They function using submit and reset buttons.
+
+Syntax:
+    <form  onsubmit="function(){}"   onreset="function(){}">
+    </form>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="page.jsp|page.aspx" onsubmit="alert('Your form will be submitted to server')" onreset="alert('Form will reset')">
+        <dl>
+            <dt>User Name</dt>
+            <dd><input type="text" name="UserName"></dd>
+        </dl>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+</body>
+</html>
+
+                            Local Storage
+- It is the memory allocated for browser, where you can store value and use across pages.
+- Local storage is accessible accross tabs.
+- It is permanent storage
+- It is present even when you close the browser.
+
+Syntax:
+    localStorage.setItem("key", value);
+    localStorage.getItem("key");
+
+Session Storage
+- It is only for specific tab.
+- Not accessible accross tabs
+- It is temporary
+- It is removed when browser is closed.
+
+Syntax:
+    sessionStorage.setItem("key", value);
+    sessionStorage.getItem("key");
+
+Ex:
+login.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function SubmitClick(){
+            var username = document.getElementById("UserName").value;
+            sessionStorage.setItem("username", username);
+            location.href = "success.html";
+           
+        }
+    </script>
+</head>
+<body>
+    User Name :
+    <input type="text" id="UserName"> <button onclick="SubmitClick()">Submit</button>
+</body>
+</html>
+
+success.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function bodyload(){
+            var uname = sessionStorage.getItem("username");
+            document.querySelector("p").innerHTML = `Hello ! ${uname}`;
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <h2>Success Page</h2>
+    <p></p>
+</body>
+</html>

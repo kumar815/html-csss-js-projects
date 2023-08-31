@@ -1,0 +1,167 @@
+Features, Drawbacks and Evolution of JavaScript
+•
+Draw Backs of JavaScript
+1. It is not strongly typed language.
+
+        variable   x = 10;         x is number type
+        x = "John";             x is string type
+
+2. It is not implicitly strictly typed, It is about the rules of programming.
+
+         userName = "John";        //valid in JavaScript
+
+3. It will not support all features of OOP.
+
+4. Code level security issues.
+
+5. Extensibility issues.
+
+
+Solution: TypeScript
+
+
+Evolution of JavaScript:
+- Client Side Script started with ECMA Script in early 1970's
+- Internet started with a browser "Mosaic"
+
+            Markup         : GML
+            Scripting        : ECMA Script
+
+- 1995  Netscape Communications - Browser Netscape Communicator
+
+            Markup        : HTML
+            Scripting        : ECMA Script
+
+   Netscape appointed  "Brendan Eich"  to develop a script for their Browser.
+
+            Script Name    : Mocha => Live Script
+
+   Netscape given the responsibility of Live Script to a company "Sun Microsystems"
+
+            Sun            :  Renamed Live Script => Java Script
+
+- 2000 Netscape stopped its services and JavaScript was given to "ECMA".
+
+            JavaScript Version    : ES2022 => ECMA Script 2022
+            ES-2015 => ES5
+            ES-2016    => ES6
+            ES-2017    => ES7
+
+                https://www.ecma-international.org/
+               
+                HTML            : WHATWG
+                JavaScript    : ECMA
+                HTML, CSS, JavaScript : Documentation => MDN => Brendan Eich
+
+How Javascript is Integrated into HTML page?
+1. Inline
+2. Embedded
+3. External File
+
+
+
+JavaScript Inline:
+- Inline technique allows to write JavaScript function directly within the element start tag.
+- Script is native and faster when it is inline.
+- However it is hard to reuse and extend.
+
+Syntax:
+    <button  onclick="window.print()"> Print </button>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Click Print Button to Print Page</h2>
+    <button onclick="window.print()">Print</button>
+</body>
+</html>
+
+JavaScript Embedded :
+- JavaScript functions are defined in a <script> container.
+- So that you can access and use from any location in page.
+- Slower when compared to inline.
+- Easy to extend and reuse.
+
+Syntax:
+        <script>
+            function Name()
+            {
+            }
+        </script>
+
+         <button onclick="Name()"> </button>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function PrintPage(){
+            window.print();
+        }
+    </script>
+</head>
+<body>
+    <h2>Click Print Button to Print Page</h2>
+    <button onclick="PrintPage()">Print</button>
+</body>
+</html>
+
+Note: The MIME type for JavaScript  is  "text/javascript"  or  "language=javascript"
+         MIME type changes according to compiler and module systems.
+                        "text/babel"
+                        "text/jsx"
+                        "module"
+Syntax:
+    <head>
+        <script type="text/javascript">
+        </script>
+    </head>
+
+    <head>
+        <script language="javascript">
+
+        </script>
+    </head>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function PrintPage(){
+            window.print();
+        }
+    </script>
+</head>
+<body>
+    <h2>Click Print Button to Print Page</h2>
+    <button onclick="PrintPage()">Print</button>
+</body>
+</html>
+
+FAQ: How to turn on strict mode for JavaScript?
+Ans:  By using the statement
+            "use strict";
+
+Syntax:
+    <script type="text/javascript">
+        "use strict";
+          x = 10;                                // invalid  - it is valid if strict mode is not defined
+          document.write("X=" + x );
+    </script>

@@ -1,0 +1,216 @@
+Query String and JavaScript Language Basics
+
+JavaScript Input
+- prompt()
+- form input elements
+
+                                Input using Query String
+- Query string is data appended into URL.
+- It is defined in browser address bar.
+- Query string is appended by using "?" and "&"
+
+Syntax:
+            http://127.0.0.1:5500/page.html?name=value&name=value
+
+- You can access the query string by using JavaScript  "location.search"
+   [location object => search property]
+
+Note: You need few string functions to read and extract string.
+
+            indexOf()        => It returns index number of any specified character.
+            slice()            => It extracts the chars from specified index.
+
+Syntax:
+                url ?username=John
+
+                str = location.search;
+                str.slice(str.indexOf("=") + 1);        // John
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query String</title>
+    <script type="text/javascript">
+        function bodyload(){
+            str = location.search;
+            document.getElementById("username").innerHTML = str.slice(str.indexOf("=")+1);
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <p>Hello ! <span id="username"></span> </p>
+</body>
+</html>
+
+=> open page in browser and pass query string
+
+        ?username=John
+
+Summary - Input and Output:
+1. Output Techniques
+    alert()
+    confirm()
+    document.write()
+    console methods
+    innerHTML
+    innerText
+    outerHTML
+2. Input Techniques
+    prompt()
+    form input elements
+    query string
+
+                            JavaScript Language Basics
+                            --------------------------------------
+1. Variables
+2. Data Types
+3. Operators
+4. Statements
+5. Functions
+
+                                JavaScript Variables
+
+- Variables are storage locations in memory where you can store a value and use as a part of any expression.
+
+Ex: without variable
+
+<script>
+     document.write("Hello !" + prompt("Enter Your Name") + "<br>");
+     document.write("Hi " + prompt("Enter Your Name"));
+</script>
+
+Ex: with variable
+
+<script>
+     username = prompt("Enter Your Name");
+     document.write("Hello !" + username + "<br>");
+     document.write("Hi " + username);
+</script>
+
+- JavaScript allows to configure a variable directly without initialization or declaration if it is not in strict mode.
+
+        <script>
+            username = "john";                // valid
+            document.write(username);
+        </script>
+
+        <script>
+            "use strict";
+            username = "john";            // invalid
+        </script>
+
+- In strict mode JavaScript variable must be declared or initialized.
+- Variables in JS are declared by using 3 keywords
+        a) var
+        b) let
+        c) const
+- Every variable configuration comprises of 3 phases
+        a) Declaration
+        b) Assignment
+        c) Initialization
+
+Syntax:
+    var  x;            => declaring
+    x = 10;        => assigning
+
+    var y=20;        => initialization
+    y=30;            => assigning
+
+FAQ: What is difference between  var, let and const?
+
+var
+- It is a function scope variable.
+- A function scope variable is configured at any block and can be accessed from any another block inside function.
+- It allows to configure a variable which is accessible to the current function and all its inner functions.
+- The mechanism of providing access for variable to its inner function is known as
+  "Closure".
+- It allows declaring, assignment and initialization.
+
+Ex:
+<script>
+    function f1()
+    {
+        var x;              // declaring
+        x = 10;             // assignment
+        if(x==10)
+        {
+            var y = 30;     // initialization
+        }
+        document.write("x=" + x + "<br>" + "y=" + y);
+    }
+    f1();
+</script>
+
+- It allows shadowing.
+- Shadowing is the process of re-declaring or initializing same name identifier with in the scope.
+       
+            {
+                var x = 10;
+                var x = 20;            // shadowing => valid
+            }
+
+Ex:
+<script>
+    function f1()
+    {
+        var x;              // declaring
+        x = 10;             // assignment
+        if(x==10)
+        {
+            var y = 30;     // initialization
+            y = 40;
+            y = 50;
+            var y = 60;     // shadowing
+        }
+        document.write("x=" + x + "<br>" + "y=" + y);
+    }
+    f1();
+</script>
+
+- It allows hoisting.
+- Hoisting is a technique followed by interpreter, where it allows to use a variable and declare or initialize later. There is no order in declaring and using.
+
+Ex:
+<script>
+    "use strict";
+    function f1(){
+        x = 10;
+        document.write("x=" + x);
+        var x;                  // hoisting
+    }
+    f1();
+</script>
+
+let
+- It is used to configure block scope variable.
+- Block scope variable is accessible within the specified block and all its inner block.
+- The members of inner block are not accessible to outer block if defined by using "let".
+- It allows declaring, assignment and initialization.
+
+Ex:
+<script>
+    function f1()
+    {
+        let x;
+        x = 10;
+        if(x==10)
+        {
+            let y = 20;
+           
+        }
+        document.write("X=" + x  + "<br>" + "Y=" + y);        // y is not defined
+    }
+    f1();
+</script>
+
+- It will not allow shadowing.
+- It will not allow hoisting.
+
+const
+- It is also block scope.
+- It allows only initialization, no declaring and no assigning.
+- It will not allow hoisting and shadowing.

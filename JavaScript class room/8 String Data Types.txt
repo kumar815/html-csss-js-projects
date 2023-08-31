@@ -1,0 +1,264 @@
+String Data Type in JavaScript
+
+String Type
+- String is a literal with group characters enclosed in
+   
+        a) Double Quotes        "    "
+        b) Single Quotes            '    '
+        c) Back Tick                `    `
+
+- Single and double quotes are used to switch between inner and outer strings.
+
+Syntax:
+            var link = "<a href=' home.html '> Home </a>";
+
+            var link = '<a href="home.html"> Home </a>';
+
+- Backtick is available from JavaScript ES5 version.
+- Backtick allows a string with embedded expression.
+- It can use the new data binding expression "${ }"
+
+Syntax:
+            `your string ${expression} your string`;
+
+Ex:
+<script>
+    var userName = "John";
+    var age = 22;
+    var msg1 = "Hello !" + " " + userName + " " + "you will be" + " " + (age+1) + " " + "next year.";
+    var msg2 = `Hello ! ${userName} you will be ${age+1} next year.`;
+    document.write(msg1 + "<br>" + msg2);
+</script>
+
+Ex:
+<script>
+    var title = prompt("Enter Title");
+    var uid = prompt("Enter User ID Type","Email | Mobile| UserId");
+    var uid_type = prompt("Enter User Id Input Type");
+    var buttonText = prompt("Enter Button Text");
+    var login = `
+       <h4>${title}</h4>
+       <dl>
+          <dt>${uid}</dt>
+          <dd><input type=${uid_type}></dd>
+          <dt>Password</dt>
+          <dd><input type="password"></dd>
+       </dl>
+       <button>${buttonText}</button>
+    `;
+    document.write(login);
+</script>
+
+- Several special characters in a string escape printing.
+- You can print the non-printable characters by using escape sequence character "\".
+
+Syntax:
+            var path = "d:\images\asp.jpg";            => d:imagesasp.jpg
+            var path = "d:\\images\\asp.jpg";        => d:\images\asp.jpg
+
+- JavaScript provides various methods and properties to format and manipulate string.
+- JavaScript methods for formatting a string.
+
+Method                Description
+------------------------------------------------------------------
+bold()                    sets <b></b>
+Italic()                    sets <i>
+fontcolor()            sets text color
+fontsize()                sets text size
+strike()                strikeout
+underline()            underline
+sup()                    super script
+sub()                    sub script
+toUpperCase()        converts to uppercase
+toLowerCase()        converts to lowercase
+
+Syntax:
+        var msg = "Welcome";
+        document.write(msg.bold().toUpperCase().fontcolor('red'));
+
+Note: RC data type elements will not allow all formats, as they are HTML elements.
+
+                                    Style Binding
+
+- It is the process binding CSS attributes to HTML elements dynamically.
+- You can format string using CSS attributes.
+- CSS attributes are defined to any element dynamically by using "style" property.
+
+Syntax:
+            element.style.cssAttribute = value;
+
+- CSS attributes are configured in "camelCase".
+
+            CSS Attribute            JavaScript Attribute
+            text-align                    textAlign
+            background-color        backgroundColor
+            font-style                    fontStyle
+            color                        color
+
+Syntax:
+        element.style.color = "red";
+        element.style.backgroundColor="yellow";
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function ShowMessage(){
+            document.getElementById("error").innerHTML = "User name Mandatory - Block Letters".fontcolor('gold');
+        }
+        function VerifyName(){
+            var username = document.getElementById("txtName").value;
+            var error = document.getElementById("error");
+            if(username==""){
+                error.innerHTML = "User Name Required";
+                error.style.color = "red";
+                error.style.fontWeight = "bold";
+                error.style.backgroundColor="yellow";
+                error.style.width="200px";
+
+            } else {
+                error.innerHTML = "";
+                document.getElementById("txtName").value = username.toUpperCase().bold();
+            }
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>User Name</dt>
+        <dd><input type="text" id="txtName" onfocus="ShowMessage()" onblur="VerifyName()"></dd>
+        <dd id="error"></dd>
+    </dl>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function ShowMessage(){
+            document.getElementById("error").innerHTML = "User name Mandatory - Block Letters".fontcolor('gold');
+        }
+        function VerifyName(){
+            var username = document.getElementById("txtName").value;
+            var error = document.getElementById("error");
+            if(username==""){
+                error.innerHTML = "User Name Required";
+                error.style.color = "red";
+                document.getElementById("txtName").style.border = "2px solid red";
+            } else {
+                error.innerHTML = "";
+                document.getElementById("txtName").value = username.toUpperCase().bold();
+            }
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>User Name</dt>
+        <dd><input type="text" id="txtName" onfocus="ShowMessage()" onblur="VerifyName()"></dd>
+        <dd id="error"></dd>
+    </dl>
+</body>
+</html>
+
+                                    Class Binding
+- You can apply a CSS class to any string or element dynamicaly.
+- It is defined by using the attribute "className".
+
+Syntax:
+        element.className="css class1  class2";
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .error-style {
+            border:1px solid red;
+            box-shadow: 2px 2px 2px red;
+        }
+    </style>
+    <script type="text/javascript">
+        function ShowMessage(){
+            document.getElementById("error").innerHTML = "User name Mandatory - Block Letters".fontcolor('gold');
+        }
+        function VerifyName(){
+            var username = document.getElementById("txtName").value;
+            var error = document.getElementById("error");
+            if(username==""){
+                error.innerHTML = "User Name Required";
+                error.style.color = "red";
+                document.getElementById("txtName").className = "error-style";
+            } else {
+                error.innerHTML = "";
+                document.getElementById("txtName").value = username.toUpperCase().bold();
+            }
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>User Name</dt>
+        <dd><input type="text" id="txtName" onfocus="ShowMessage()" onblur="VerifyName()"></dd>
+        <dd id="error"></dd>
+    </dl>
+</body>
+</html>
+
+Ex: Theme for Login
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script type="text/javascript">
+        function ThemeChanged(){
+            var themeCheck = document.getElementById("theme");
+            var loginContainer = document.getElementById("loginContainer");
+            var button = document.querySelector("button");
+
+            if(themeCheck.checked){
+                loginContainer.className = "border border-2 p-4 w-25 bg-dark text-white";
+                button.className = "btn btn-light w-100";
+            } else {
+                loginContainer.className = "border border-2 p-4 w-25";
+                button.className = "btn btn-dark w-100";
+            }
+        }
+    </script>
+</head>
+<body class="container-fluid d-flex justify-content-center align-items-center" style="height:500px">
+    <div class="border border-2 p-4 w-25" id="loginContainer">
+        <div class="form-switch">
+            <input type="checkbox" id="theme" onchange="ThemeChanged()" class="form-check-input"> Dark Theme
+        </div>
+        <h2>User Login</h2>
+        <dl>
+            <dt>User Name</dt>
+            <dd><input type="text" class="form-control"></dd>
+            <dt>Password</dt>
+            <dd><input type="password" class="form-control"></dd>
+        </dl>
+        <button class="btn btn-dark w-100">Login</button>
+    </div>
+</body>
+</html>

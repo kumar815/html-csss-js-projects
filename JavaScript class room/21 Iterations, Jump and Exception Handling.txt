@@ -1,0 +1,311 @@
+Iterations, Jump and Exception Handling
+
+Selection Statements
+Looping Statements
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var userDetails = {
+            UserName: "John",
+            Pin: "4560"
+        }
+        var count = 0;
+        function VerifyPin(){
+            var pin = document.getElementById("Pin").value;
+            if(pin===userDetails.Pin){
+                document.write("Verified Successfully..");
+            } else {
+                 do
+                 {
+                    if(count==3){
+                        document.querySelector("button").disabled = true;
+                        document.getElementById("error").innerHTML = "Card Blocked";
+                    }
+                    count++;
+                    document.getElementById("error").innerHTML = `Invalid PIN - ${3-count} attempts left`;
+                 }while(count>=3)
+            }
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>Your PIN</dt>
+        <dd><input type="text" id="Pin"></dd>
+        <dd id="error"></dd>
+    </dl>
+    <button onclick="VerifyPin()">Submit</button>
+</body>
+</html>
+
+
+                                    Iteration Statements
+- Iteration is a software design pattern.
+- It is the process of access elements from a collection in sequential order.
+- Iteration doesn't require initialization, condition and counter.
+- Iteration statements are defined by using
+
+        a) for..in
+        b) for..of
+
+- for..in  => is used for reading all properties from collection.
+- for..of  => is used for reading all values from collection.
+
+Syntax:
+        for(var property  in collection)
+        {
+        }
+
+        for(var value of collection)
+        {
+        }
+
+Note: Iterations use a "function generator".
+
+
+Ex: Looping
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var menu = [
+            {Category: "Electronics", Products: ["TV", "Mobile"]},
+            {Category: "Footwear", Products: ["Casuals", "Boots"]}
+        ];
+
+        function bodyload(){
+            for(var i=0; i<menu.length; i++){
+                var li = document.createElement("li");
+                li.innerHTML = menu[i].Category;
+                for(var j=0; j<menu[i].Products.length; j++)
+                {
+                    var ul = document.createElement("ul");
+                    var ul_li = document.createElement("li");
+                    ul_li.innerHTML = menu[i].Products[j];
+                    ul.appendChild(ul_li);
+                    li.appendChild(ul);
+                    document.querySelector("ol").appendChild(li);
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <ol></ol>
+</body>
+</html>
+
+
+Ex: Iterations
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var menu = [
+            {Category: "Electronics", Products: ["TV", "Mobile"]},
+            {Category: "Footwear", Products: ["Casuals", "Boots"]}
+        ];
+
+        function bodyload(){
+            for(var item of menu)
+            {
+                var li = document.createElement("li");
+                li.innerHTML = item.Category;
+                for(var product of item.Products){
+                    var ul = document.createElement("ul");
+                    var ul_li = document.createElement("li");
+                    ul_li.innerHTML = product;
+                    ul.appendChild(ul_li);
+                    li.appendChild(ul);
+                    document.querySelector("ol").appendChild(li);
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <ol></ol>
+</body>
+</html>
+
+Ex: By using map()
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var menu = [
+            {Category: "Electronics", Products: ["TV", "Mobile"]},
+            {Category: "Footwear", Products: ["Casuals", "Boots"]}
+        ];
+
+        function bodyload(){
+            menu.map(function(item){
+                var li = document.createElement("li");
+                li.innerHTML = item.Category;
+                item.Products.map(function(product){
+                    var ul = document.createElement("ul");
+                    var ul_li = document.createElement("li");
+                    ul_li.innerHTML = product;
+                    ul.appendChild(ul_li);
+                    li.appendChild(ul);
+                    document.querySelector("ol").appendChild(li);
+                })
+            })
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <ol></ol>
+</body>
+</html>
+
+FAQ:
+1. Is this valid syntax
+    var i=1;
+    for(  ; i<=10; i++) {
+
+    }
+A. Yes
+
+2. Is this valid syntax
+   
+    var i=1;
+    for(i<=10; i++) {
+
+    }
+
+A. No. It is invalid, initializer location can't be removed. It can be empty.
+
+3. Is this valid syntax
+
+    var i=1;
+    for( ;   ;  i++) {
+        if(i<=10){
+        }
+    }
+
+A. Yes. It is valid.
+
+
+4. Write a program to print  triangle of "*" ?
+5. Write a program to print  diamond of "*"?
+
+*
+*  *
+*  *   *
+*  *   *   *
+
+            codechef, codewars, hackerrank
+
+
+                                    Jump Statements
+1. break
+2. return
+3. continue
+
+- break terminates the current block but stays in function.
+- return terminates the current function and stops compiling.
+- continue is used to skip the current counter.
+
+Syntax:
+    for(var i =1; i<=10; i++)                                1
+    {                                                        2
+        if(i==5) {                                            3
+         continue;                                            4
+        }                                                    6                        
+        document.write(i + "<br>);                        7
+    }
+   
+Ex:
+<script>
+     var data = [
+        {Name: "TV", Category: "Electronics"},
+        {Name: "Nike Casuals", Category: "Footwear"},
+        {Name: "Shirt", Category: "Fashion"},
+        {Name: "Mobile", Category: "Electronics"}
+     ];
+     function f1(){
+        for(var item of data){
+            if(item.Category=="Footwear" || item.Category=="Fashion"){
+                continue;
+            }
+            document.write(item.Name + "<br>");
+        }
+     }
+     f1();
+</script>
+
+                            Exception Handling Statements
+
+- Computer programming errors are classified into 2 types
+    1. Compile Time Errors
+    2. Run Time Errors
+
+- Compile time errors are syntactical errors, due to which program fails to run.
+- Run Time errors are dynamic that occur while using application. It compiles success fully but have catastrophic failures.
+- Run time errors lead to abnormal termination of application.
+- Exception handling is used in computer programming to avoid "Abnormal Termination".
+- Exception handling statements
+
+    a) try
+    b) catch
+    c) throw
+    d) finally
+
+- try            : It is the monitoring block - statements to execute
+- catch        : It is handler block - catch the issues in code.
+- throw        : It is used to throw any exception
+- finally        : It comprises of statements to execute always
+
+Ex:
+<script>
+    try {
+        var a = parseInt(prompt("Enter Number1"));
+        var b = parseInt(prompt("Enter Number2"));
+        if(b==0){
+            throw "Divide By Zero Error<br>";
+        }
+        if(b>a) {
+            throw "Number is too large <br>";
+        }
+        var c = a / b;
+        document.write(`C=${c}<br>`);
+    }
+     catch(ex) {
+        document.write(ex);
+     }
+     finally {
+        document.write("Program End");
+     }
+</script>
+
+Statements
+- Selection
+- Iteration
+- Looping
+- Jump
+- Exception Handling
+
+                                        OOP - Functions

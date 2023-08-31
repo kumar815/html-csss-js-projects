@@ -1,0 +1,351 @@
+Array Manipulations 
+
+Array Methods
+1. Read Array Elements
+    toString()
+    join()
+    slice()
+    find()
+    filter()
+    forEach()
+    map()
+    for..in
+    for..of
+    for
+    while
+    do while
+
+    Dynamically Creating Elements
+    document.createElement()
+    appendChild()
+
+    Presenting Array Elements in HTML Page
+
+Ex: Ordered List
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+    <script type="text/javascript">
+         var categories = ["All","Electronics", "Footwear", "Fashion"];
+         function bodyload(){
+            categories.map(function(value){
+                var li = document.createElement("li");
+                li.innerHTML = value;
+                document.querySelector("ol").appendChild(li);
+            })
+         }
+    </script>
+</head>
+<body onload="bodyload()">
+    <h3>Categories List</h3>
+    <ol>
+
+    </ol>
+</body>
+</html>
+
+Ex: Dropdown Items
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+    <script type="text/javascript">
+         var categories = ["All","Electronics", "Footwear", "Kids Fashion"];
+         function bodyload(){
+             for(var item of categories)
+             {
+                var option = document.createElement("option");
+                option.text = item;
+                option.value = item;
+                document.querySelector("select").appendChild(option);
+             }
+         }
+    </script>
+</head>
+<body onload="bodyload()">
+    <h3>Categories List</h3>
+    <select></select>
+</body>
+</html>
+
+Ex: Create Dropdown and Add Items
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+    <script type="text/javascript">
+         var categories = ["All","Electronics", "Footwear", "Kids Fashion"];
+         function bodyload(){
+             var select = document.createElement("select");
+             for(var item of categories)
+             {
+                 var opt = document.createElement("option");
+                 opt.text = item;
+                 opt.value = item;
+                 select.appendChild(opt);
+                 document.querySelector("div").appendChild(select);
+             }
+         }
+    </script>
+</head>
+<body onload="bodyload()">
+    <h3>Categories List</h3>
+    <div></div>
+</body>
+</html>
+
+Ex: Design Table Body
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+    <script type="text/javascript">
+         var categories = ["All","Electronics", "Footwear", "Kids Fashion"];
+         function bodyload(){
+             categories.forEach(function(value){
+                 var tr = document.createElement("tr");
+                 var td = document.createElement("td");
+                 td.innerHTML = value;
+                 tr.appendChild(td);
+                 document.querySelector("tbody").appendChild(tr);
+             })
+         }
+    </script>
+</head>
+<body onload="bodyload()">
+    <h3>Categories List</h3>
+    <table border="1" width="300">
+        <thead>
+            <tr>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+</html>
+
+Ex: CheckBox List from Array
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+    <script type="text/javascript">
+         var categories = ["All","Electronics", "Footwear", "Kids Fashion"];
+         function bodyload(){
+            categories.map(function(value){
+                 var input = document.createElement("input");
+                 input.type = "checkbox";
+                 var label = document.createElement("label");
+                 label.innerHTML = value;
+                 var li = document.createElement("li");
+                 li.appendChild(input);
+                 li.appendChild(label);
+                 document.querySelector("ol").appendChild(li);
+
+            })
+         }
+    </script>
+</head>
+<body onload="bodyload()">
+    <h3>Categories List</h3>
+    <ol>
+
+    </ol>
+</body>
+</html>
+
+
+Ex: Checkbox List  without creating checkbox dynamically using createElement()
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+    <script type="text/javascript">
+         var categories = ["All","Electronics", "Footwear", "Kids Fashion"];
+         function bodyload(){
+            categories.map(function(value){
+                 var li = document.createElement("li");
+                 li.innerHTML = `
+                   <input type="checkbox"> <label>${value}</label>
+                 `;
+                 document.querySelector("ol").appendChild(li);
+            })
+         }
+    </script>
+</head>
+<body onload="bodyload()">
+    <h3>Categories List</h3>
+    <ol>
+
+    </ol>
+</body>
+</html>
+
+Ex:  Buttons
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+    <script type="text/javascript">
+         var categories = ["All","Electronics", "Footwear", "Kids Fashion"];
+         function bodyload(){
+            categories.map(function(value){
+                var button = document.createElement("button");
+                button.style.width = "200px";
+                button.innerHTML = value;
+                button.style.display = "block";
+                button.style.marginBottom = "20px";
+                document.querySelector("nav").appendChild(button);
+            })
+         }
+    </script>
+</head>
+<body onload="bodyload()">
+    <h3>Categories List</h3>
+    <nav>
+
+    </nav>
+</body>
+</html>
+
+
+FAQ: What type of data can be stored in array?
+Ans : You can store any type of data in array
+        a) Primitive
+        b) Non Primitive
+        c) Function
+        d) Class
+
+Ex:
+<script>
+     var values = [1, "Samsung TV", true, ["Delhi", "Hyd"], function(){ document.write("Hello ! from Array")}];
+     document.write(`City-2 : ${values[3][1]}<br>`);
+     values[4]();
+</script>
+
+ Note: JavaScript E5+ supports Array Destructure, which allows to access elements from array and store in individual references.
+
+Ex:
+<script>
+     var values = [1, "Samsung TV", true, ["Delhi", "Hyd"], function(){ document.write("Hello ! from Array")}];
+     var [id, name, stock, cities, hello] = values;
+
+     document.write(`
+        Product Id :  ${id} <br>
+        Name : ${name} <br>
+        Stock : ${stock} <br>
+        Cities : ${cities.toString()} <br>
+     `);
+      hello();
+</script>
+
+2. Adding Elements into Array
+
+    push()                It adds new item[s] as last item.
+    unshift()            It adds new item[s] as first item.
+    splice()            It adds new item[s] at any specific position.
+
+Syntax:
+    array.push("item1", "item2", ...);
+    array.unshift("item", "item2", ...);
+    array.splice(startIndex, deleteCount, "item1", "item2", ...);
+
+Ex:
+<script>
+     var categories = ["Electronics", "Footwear"];
+     categories.unshift("All");
+     categories.push("Kids Fashion", "Men's Fashion");
+     categories.splice(2,0,"Women's Fashion","Kitchen");
+     for(var property in categories)
+     {
+        document.write(`[${property}]-${categories[property]}<br>`);
+     }
+</script>
+
+3. Remove Array Elements
+       
+        pop()             It removes the last item.
+        shift()             It removes the first item.
+        splice()         It removes the specific item.
+
+Syntax:
+         array.pop()
+         array.shift()
+         array.splice(indexNumber, deleteCount)
+
+Ex:
+<script>
+     var categories = ["Electronics", "Footwear"];
+     categories.unshift("All");
+     categories.push("Kids Fashion", "Men's Fashion");
+     categories.splice(2,0,"Women's Fashion","Kitchen");
+     categories.shift();
+     categories.pop();
+     categories.splice(2,1);
+     for(var property in categories)
+     {
+        document.write(`[${property}]-${categories[property]}<br>`);
+     }
+</script>
+
+ 4. Searching for element in array
+
+      indexOf()            It returns the index number of specified element [-1 not found]
+      lastIndexOf()        It returns the last occurance element index.
+      find()                    It returns the element that matches given condition.
+      filter()                It returns all elements that match given condition.
+
+ 5. Sorting Array Elements
+
+      sort()                    It sorts in ascending order.
+      reverse()            It sorts in reverse order.
+
+Ex:
+<script>
+     var categories = ["Delhi", "Mumbai", "Chennai", "Hyd", "Bangalore"];
+     categories.sort();
+     categories.reverse();
+     for(var property in categories)
+     {
+        document.write(`[${property}]-${categories[property]}<br>`);
+     }
+</script>
+
+FAQ: How to delete all array elements?
+Ans :
+        var values = [ "A" , "B"];
+        values = [];  
+            (or)
+        values.length = 0;

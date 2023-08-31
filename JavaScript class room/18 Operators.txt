@@ -1,0 +1,272 @@
+Operators
+
+Data Types
+    - Primitive Types
+            number, string, boolean, null, undefined, symbol
+    - Non Primitive Types
+            array, object, map
+    - date
+Timer Events
+    - setTimeout()n
+    - setInterval()
+    - clearTimeout()
+    - clearInterval()
+
+                                JavaScript Operators
+- Operator is an object that evaluates an value by using specific expression.
+- Operators are classified into 3 groups based on operands
+
+                x + y    => x, y are operands and "+" is operator
+
+1. Unary Operator
+ - It handle operation using one operand.
+
+        ++, --
+Syntax:
+        var x = 1;
+        x++;            // x = x + 1
+
+2. Binary Operator
+- It handles operation using two operands
+
+        +, - , *, / ..
+
+Syntax:
+        x  + y
+
+
+3. Ternary Operator
+- It handle operation using three operands
+
+        "?:"
+Syntax:
+        (condition)?true:false
+
+- The operators are further classified into various groups based on the value they return.
+
+1. Arithematic Operators [ number ]
+
+    +        Addition
+    -        Subtraction
+    *        Multiplication
+    /        Division
+    %        Modulus
+    **        Power [Math.pow()]    2**3 => 8
+    ++        Increment
+    --        Decrement
+
+FAQ's:
+    string + string            => string            "A" + "B" => AB
+    string + number            => string            "A" + 10  => A10
+    string + boolean            => string            "A" + true => Atrue
+      number+number        => number        10 + 20 => 30
+    number+boolean        => number        10 + true => 11
+     boolean+boolean        => number        true + true => 2
+
+    string - string                =>  NaN
+    string - number            => NaN
+    string - boolean            => NaN
+    number-number            => number
+    number-boolean            => number
+    boolean-boolean        => number
+
+    10 / false                     => infinity
+
+- Increment and Decrement
+
+    x = 10;
+    y = x++;            x=11, y=10
+
+    - Post Increment, will assign the value and then increments.
+
+    x = 10;
+    y = ++x;            x=11,  y=11
+
+    - Pre Increment, will increment and then assign.
+
+    x = 10;
+    y = x--;            x=9, y=10        post decrement
+
+    x = 10;
+    y = --x;            x=9, y=9        pre decrement
+
+2. Comparision Operators    [boolean]
+
+==                Equal
+===            Identical Equal
+>                Greater than
+>=                Greater than or equal
+<                Lessthan
+<=                Lessthan or equal
+!=                Not equal
+!==                Not Identical
+
+FAQ: What is difference between "==" & "===" ?
+Ans:     "==" can compare values of different types.
+           
+        Syntax:    
+                x = "10";
+                y = 10;
+                x==y        ?  true
+
+        "===" can compare values only of same type.
+
+                x===y         ? false
+
+
+3. Assignment Operators
+
+    +=            Add and assign
+    -=            subtract and assign
+    *=
+    /=
+    %=
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var position = 50;
+        function MoveRightClick(){
+            document.querySelector("img").style.marginLeft = position + "px";
+            position+=50;
+        }
+        function MoveLeftClick(){
+            position-=50;
+            document.querySelector("img").style.marginLeft = position + "px";
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <button onclick="MoveLeftClick()">Move Left</button>
+        <button onclick="MoveRightClick()">Move Right</button>
+    </div>
+    <br>
+    <img src="../public/images/a4.jpg" width="100" height="100">
+</body>
+</html>
+
+4. Logical Operators
+
+    &&                Logical AND
+    ||                Logical OR
+    !                NOT
+
+
+Syntax:
+    exp1 && exp2        => If both expressions evaluate true then the result is true
+    exp1  || exp2            => If any one expression is true then the result is true.
+    !true                    => false
+
+    !undefined            => defined
+
+Ex:
+data / users.json
+
+[
+    {
+        "UserName": "john_nit",
+        "Password": "john@123"
+    },
+    {
+        "UserName": "raj_hyd",
+        "Password": "raj11"
+    }
+]
+
+Login.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script>
+        function LoginClick(){
+            var username = document.getElementById("UserName").value;
+            var password = document.getElementById("Password").value;
+
+            fetch("../data/users.json")
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(users){
+                users.map(function(user){
+                    if(user.UserName===username && user.Password===password){
+                        document.write("Login Success..");
+                        return;
+                    } else {
+                        document.querySelector("p").innerHTML = "Invalid User Name / Password".fontcolor('red');
+                    }
+                })
+            })
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <h3>User Login</h3>
+        <dt>User Name</dt>
+        <dd><input type="text" id="UserName"></dd>
+        <dt>Password</dt>
+        <dd><input type="password" id="Password"></dd>
+    </dl>
+    <button onclick="LoginClick()">Login</button>
+    <p></p>
+</body>
+</html>
+
+Ex: Break
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script>
+        function LoginClick(){
+            var username = document.getElementById("UserName").value;
+            var password = document.getElementById("Password").value;
+
+            fetch("../data/users.json")
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(users){
+                for(var user of users){
+                    if(user.UserName===username && user.Password===password){
+                        document.write("Login Success");
+                        break;
+                    } else {
+                        document.querySelector("p").innerHTML = "Invalid User Name / Password".fontcolor('red');
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <h3>User Login</h3>
+        <dt>User Name</dt>
+        <dd><input type="text" id="UserName"></dd>
+        <dt>Password</dt>
+        <dd><input type="password" id="Password"></dd>
+    </dl>
+    <button onclick="LoginClick()">Login</button>
+    <p></p>
+</body>
+</html>
+
+Special Operators

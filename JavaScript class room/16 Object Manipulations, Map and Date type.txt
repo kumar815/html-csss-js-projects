@@ -1,0 +1,174 @@
+Object Manipulations, Map and Date type
+
+Object Manipulations
+1. How to access the value of an object?
+A. You can access the value with reference of "this" keyword and property name, within
+    the object.
+                    Syntax:
+                            this.PropertyName;
+     You can access the value with object name and property name, if it is outside object.
+                    Syntax:
+                            objectName.propertyName;
+
+2. How to access all properties in object?
+A. By using "for..in" iterator
+
+Syntax:
+        for(var property in objectName)
+        {
+        }
+
+Ex:
+<script>
+    var product = {Name:"TV", Price:45000.44, Stock:true};
+    for(var property in product)
+    {
+        document.write(property + "<br>");
+    }
+</script>
+
+3. How to access all values?
+A. By using for..in and object-key reference.
+
+Ex:
+<script>
+    var product = {Name:"TV", Price:45000.44, Stock:true};
+    for(var property in product)
+    {
+        document.write(product[property] + "<br>");
+    }
+</script>
+
+Note: You can access all keys from object from ES5+ versions using
+        "Object.Keys()"
+
+<script>
+    var product = {Name:"TV", Price:45000.44, Stock:true};
+    Object.keys(product).map(function(key){
+        document.write(key + "<br>");
+    })
+</script>
+
+4. How to set the count of all keys in object?
+A. Object.keys(product).length
+
+5. How to check the availability of key in object?
+A. By using JavaScript "in" operator.
+
+        "propertyName in  objectName"    => true / false
+
+Ex:
+<script>
+    var product = {Name:"TV", Price:45000.44, Stock:true};
+    if("Rating" in product){
+        document.write("Rating :" + product.Rating.Rate);
+    } else {
+        document.write("Rating Not Available");
+    }
+</script>
+
+6. How to remove any property from object?
+A. By using JavaScript "delete" operator.
+
+Syntax:
+        delete  objectName.PropertyName;
+
+Ex:
+<script>
+    var product = {Name:"TV", Price:45000.44, Stock:true};
+    delete product.Price;
+    document.write(`
+       Name: ${product.Name} <br>
+       ${(product.Price)?`Price=${product.Price}<br>`: "Price Not Available<br>"}
+       Stock: ${product.Stock}
+    `);
+</script>
+
+Note: You can't delete the properties of built-in JavaScript objects.
+
+        delete Math.PI        => Invalid : all built-in properties are readonly.
+        a) Array
+        b) String
+        c) Math
+
+7. What are the issues with Object Type?
+A.
+    - It can handle keys of only string type.
+    - It uses all explicit methods to manipulate.
+    - It is slow in access and manipulations.
+    - You need various techniques for reading keys, values and size.
+
+Note: JavaScript E5+ versions introduced "Map()" type as alternative for object.
+
+
+                                JavaScript Map() type
+
+- Map is a key-value collection same as object.
+- Keys in map can be any type.
+- Value in map can be any type.
+- Map provides several implicit methods for manipulation.
+- Hence it is faster in access.
+
+Members:
+    set()            : It is used to set a new key and value.
+    get()            : It is used to read a value using key.
+    keys()            : It returns all keys
+    values()        : It returns all values
+    entries()        : It retuens all keys and values
+    has()            : It verifies the existance of a key.
+    delete()        : It removes the specified key
+    clear()            : It removes all keys
+    size()            : It returns the count of keys
+
+Note: The issues with Map() is, it is a schema less collection. [structure less].
+
+Syntax:
+            var  obj = new Map();
+            obj.set("key", "value");
+            obj.get("key");
+            obj.delete("key");
+            obj.size()
+            obj.has("Key");
+
+Ex:
+<script>
+    var topics = new Map();
+    topics.set(1, "JavaScript is light weight JIT compiled Language");
+    topics.set("html", "It is a markup language");
+    topics.set(101, ["Delhi", "Hyd"]);
+
+    document.write(topics.get(101) + "<br>");
+
+    topics.delete("html");
+    for(var item of topics.entries()){
+        document.write(item + "<br>");
+    }
+</script>
+
+                                JavaScript Date Type
+- JavaScript date type values are handled by using "Date()" constructor.
+
+Syntax:
+            var now  = new Date();        => It loads current date and time.
+   
+- If you want specific date and time value to store then it must be defined as string with following format:
+
+        new Date ("yyyy-mm-dd  hrs:min:sec.millSec");
+
+Syntax:
+        var mfd = new Date("2023-04-22  17:30:46.88");
+
+- JavaScript provides various methods for handling date and time values.
+
+        getHours()            : It returns hour number 0 to 23
+        getMinutes()            : It returns minutes number 0 to 59
+        getSeconds()            : It returns seconds number 0 to 59
+        getMilliSeconds()    : It returns milliseconds number 0 to 99
+        getDate()                : It returns date number
+        getDay()                : It returns weekday number "0=Sunday"
+        getMonth()            : It returns month number "0=January"
+        getFullYear()            : It returns full year number "4 digits"
+        getYear()                : It is obsolete [no-longer in use] [Y2K format of year]
+        toLocaleDateString()
+        toLocaleTimeString()
+        toString()

@@ -1,0 +1,214 @@
+avaScript String, Boolean and Null
+
+String Manipulations in JavaScript
+charAt()
+charCodeAt()
+startsWith()
+endsWith()
+match()
+slice()
+substr()
+substring()
+indexOf()
+lastIndexOf()
+trim()
+split()
+length
+
+
+trim()                    It is used to remove leading spaces in a string.
+                        Leading space includes blank space before and after the string.
+
+Syntax:
+        var  code = "   4442";
+        code.trim(); "4442";
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function VerifyOTP(){
+            var otp = document.getElementById("txtOTP").value;
+            var error = document.getElementById("error");
+            if(otp.trim()=="4424"){
+                error.innerHTML = "OTP Verified".fontcolor('green');
+            } else {
+                error.innerHTML = "Invalid OTP".fontcolor('red');
+            }
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>Your OTP</dt>
+        <dd><input type="text" id="txtOTP" onblur="VerifyOTP()"></dd>
+        <dd id="error"></dd>
+    </dl>
+</body>
+</html>
+
+split()            : It splits the string into an array. It identifies the delimeter [separator]
+                  and splits the string into multiple elements.
+                  The result is a array of strings.
+
+Syntax:
+        var str = "A, B";
+        str.split(' , ');        = result [0] = A
+                            = result [1] = B
+
+Ex:
+<script>
+     var contacts = "john-9993828812, david-8883727172";
+     var result = contacts.split(',');
+     document.write(`${result[0]} <br> ${result[1]}`);
+</script>
+
+Ex:
+<script>
+     var contacts = "john-9993828812, david-8883727172";
+     var [john, david] = contacts.split(',');
+     document.write(john + "<br>" + david);
+</script>
+
+                                    Boolean Type
+- Boolean types are used in decision making.
+- JavaScript boolean types can handle 2 values "true" & "false".
+- JavaScript boolean value can compare with 1 & 0.
+
+                true = 1
+                false = 0
+syntax:
+        var x = 1;            // number
+        var x = true;        // boolean
+        if(x==1) {            // true - not good
+   
+        }
+        if(x==true) {        // true - good
+
+        }
+
+Ex:
+<script>
+     var stock = false;
+     if(stock==1){
+        document.write("Available");
+     } else {
+        document.write("Out of Stock");
+     }
+</script>
+
+        true + true =  ?  [2]
+        true + 2     =  ?  [3]
+        true + "A"     =  ?  [trueA]
+        true + false = ? [1]
+
+Which HTML Attributes are boolean type?
+-disabled            <button  disabled>        element.disabled = false;
+-readonly
+-required
+-checked
+
+Ex: Toggle Button
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script type="text/javascript">
+        function SortClick(){
+            var lblSort = document.getElementById("lblSort");
+            lblSort.className = (lblSort.className=="bi bi-sort-alpha-down")?"bi bi-sort-alpha-up":"bi bi-sort-alpha-down";
+        }
+        function VerifyStock(){
+            var lblStock = document.getElementById("lblStock");
+            var optStock = document.getElementById("optStock");
+            var pic = document.getElementById("pic");
+            lblStock.innerHTML = (optStock.checked==true)?"Hide":"Show";
+            pic.style.display = (optStock.checked==true)?"block":"none";
+        }
+    </script>
+</head>
+<body>
+    <button onclick="SortClick()">
+        <span id="lblSort" class="bi bi-sort-alpha-down"></span>
+    </button>
+    <div>
+        <input type="checkbox" onchange="VerifyStock()" id="optStock"> <label id="lblStock">Show</label>
+    </div>
+    <div id="pic" style="display:none">
+        <img src="../public/images/m1.jpg" width="300" height="300">
+    </div>
+</body>
+</html>
+
+                                    undefined type
+- JavaScript is implicitly typed.
+- The data type of variable is determined according to the value defined.
+- If variable is not defined with a value then the compiler will set it to "undefined".
+
+Syntax:
+        var  price;
+        document.write("Price=" + price);            Price=undefined;
+
+- The keyword "undefined" can be used to verify value defined or not.
+
+Ex:
+<script>
+     var name = "Samsung TV";
+     var price;
+     if(price==undefined){
+        document.write(`Name=${name}`);
+     } else {
+     document.write(`Name=${name}<br>Price=${price}`);
+     }
+</script>
+
+FAQ: What is "undefined" and "not-defined"?
+Ans :
+        undefined     => is about the value
+        not defined    => is about the reference
+
+        If value not defined in a variable then it returns "undefined".
+        If a reference is not created and you try to access, then it returns "not defined".
+
+                                        null type
+- If a reference is expecting value at compile time and it is not provided, then compiler will set as "undefined".
+   
+                var x;
+                document.write("x=" + x);            x = undefined
+
+                var x = prompt("Enter X");
+                document.write("x=" + x);            prompt is canceled = null
+
+Ex:
+<script>
+     var x;
+     var y = prompt("Enter value for Y");
+     if(y==null){
+        document.write("Please provide value for Y");
+     } else {
+     document.write(`X=${x} <br> Y=${y}`);
+     }
+</script>
+
+
+Ex: Good Code for Defined or Undefined
+
+<script>
+     var price;
+     if(price)
+     {
+        document.write("Price=" + price);
+     } else {
+       
+        document.write("Price not defined");
+     }
+</script>

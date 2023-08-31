@@ -1,0 +1,265 @@
+Browser Objects
+
+JavaScript OOP
+- Module
+- Class
+    Property
+    Accessor
+    Method
+    Constructor
+- Inheritance
+- Polymorphism
+
+                    JavaScript Browser Objects
+1. window
+2. location
+3. navigator
+4. history
+5. document
+
+window
+- It provides properties and methods that are used to control browser window.
+
+    alert()
+    confirm()
+    prompt()
+    open()
+    close()
+    print()  etc..
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function OpenClick(){
+            window.open('../public/images/a1.jpg','Ads','width=300 height=300');
+        }
+    </script>
+</head>
+<body>
+    <h1>Browser Window Object</h1>
+    <button onclick="OpenClick()">Open</button>
+    <button onclick="window.close()">Close</button>
+    <button onclick="window.print()">Print</button>
+</body>
+</html>
+
+location:
+- It provides properties and methods that are used to access the client location details
+
+        host            returns server name or IP address
+        pathname    returns the current file path.
+        href            gets and sets complete URL.
+        port            returns the current port number.
+        protocol        return the protocol : http , file, https etc..
+
+Syntax:
+    location.host
+    location.pathname
+
+Ex:
+<script>
+    document.write(`
+        IP Adderss  : ${location.host} <br>
+        Port Number : ${location.port} <br>
+        Protocol    : ${location.protocol} - ${(location.protocol==="http:")?"You are accessing from Live Server":"You are accessing from File System"} <br>
+        URL         : ${location.href} <br>
+        Path        : ${location.pathname}
+    `)
+</script>
+
+navigator:
+- It provides properties and methods that are used to get client browser details.
+
+    appName        : returns browser family name.
+    appVersion        : returns browser version
+    platform            : returns current OS details
+    cookieEnabled    : cookie status
+    plugins[]            : plugin enabled in browser
+
+Ex:
+<script>
+    document.write(`
+        ${(navigator.cookieEnabled==true)?"<h2>You can Login</h2>":"<h2>Cookies Disabled</h2>"} <br>
+        You are using : ${navigator.platform}
+    `);
+</script>
+
+      geoLocation        : It can access your current geo location.
+
+Ex:
+<script>
+    navigator.geolocation.getCurrentPosition(function(position){
+        document.write(`
+            Latitude : ${position.coords.latitude} <br>
+            Longitude: ${position.coords.longitude}
+        `);
+    })
+</script>
+
+FAQ: How to check the status of JavaScript in browser?
+Ans:  By using HTML element <noscript>
+
+Syntax:
+<body>
+   <noscript>  please enable javascript on browser </noscript>
+</body>
+
+history:
+- It provides the properties and methods that are used to control access to current browsing history
+
+    length            : total count of page you visited
+    back()            : moves to previous page
+    forward()            : moves to next page
+    go()                : moves to specific page in browser history
+
+Syntax:
+    history.length
+    history.back()
+   
+    <button onclick="history.back()"> Back </button>
+
+document:
+- It provides properties and methods that are used to handle document elements.
+
+        getElementById()
+        querySelector()
+        innerHTML
+        innerText
+        write()
+        appendChild() etc..
+
+                        Browser Events
+- Event defines a trigger for element.
+- It defines actions to perform.
+- JavaScript browser events have 2 arguments
+    a) this
+    b) event
+
+Syntax:
+    <button  onclick="f1(this, event)">
+
+- "this" sends information about current element, like
+
+    id, name, className, width, height, value etc..
+
+- "event" sends information about current event, [click]
+
+    clientX, clientY, altKey, ctrlKey, shiftKey, which etc..
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function InsertClick(btnObj, e){
+            document.write(`
+                Button Id : ${btnObj.id} <br>
+                Button Name: ${btnObj.name} <br>
+                Button Class: ${btnObj.className} <br>
+                X Position : ${e.clientX} <br>
+                Y Position : ${e.clientY} <br>
+                Ctrl Key   : ${e.ctrlKey}
+            `);
+        }
+    </script>
+</head>
+<body>
+    <button id="btnInsert" onclick="InsertClick(this, event)" name="Insert" class="btn btn-primary">Insert</button>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+       function ImageClick(e){
+          if(e.ctrlKey){
+             window.open('../public/images/aws.jpg','Course','width=400 height=400');
+          } else {
+             alert(`Please click using ctrl key`);
+          }
+       }
+    </script>
+</head>
+<body>
+    <img onclick="ImageClick(event)" src="../public/images/aws.jpg" width="100" height="100">
+    <p>Ctrl  + Click to open in new window</p>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function Database(name){
+            switch(name){
+                case "Insert":
+                document.write("Record Inserted");
+                break;
+                case "Update":
+                document.write("Record Updated");
+                break;
+                case "Delete":
+                document.write("Record Deleted");
+                break;
+            }
+        }
+    </script>
+</head>
+<body>
+    <button name="Insert" onclick="Database(this.name)">Insert</button>
+    <button name="Update" onclick="Database(this.name)">Update</button>
+    <button name="Delete" onclick="Database(this.name)">Delete</button>
+</body>
+</html>
+
+- You can send custom args.
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function ButtonClick(array, obj){
+            document.write(`
+                Array Elements : ${array.toString()} <br>
+                Rate : ${obj.Rate} [${obj.Count}]
+            `);
+        }
+    </script>
+</head>
+<body>
+    <button onclick="ButtonClick(['TV', 'Mobile'], {Rate:4.3, Count:4500})">Click Me</button>
+</body>
+</html>
+
+- JavaScript browser events are classified into various groups
+
+1. Mouse Events
+2. Keyboard Events
+3. Button Events
+4. Element State Events
+5. Clipboard Events
+6. Form Events
+7. Touch Events etc...

@@ -1,0 +1,130 @@
+Symbol and Non-Primitive Types
+
+Primitive Data Types
+    - number
+    - string
+    - boolean
+    - null
+    - undefined
+    - symbol
+
+                                        Symbol
+    - It is a new primitive type introduced into JavaScript ES6 version.
+    - It is used to define a unique reference of every object.
+    - It is hidden over iterations but provides access if reffered individually.
+
+    FAQ: What is a hidden type?
+    Ans:  It is an input type in HTML that keeps data hidden in form, but can submit
+           data on request.
+
+           Syntax:
+            <input type="hidden"  name="UserId"  value="John_NIT">
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <form>
+      <h3>Edit User Details</h3>
+      <dl>
+         <input type="hidden" name="UserId" value="John_NIT">
+         <dt>Name</dt>
+         <dd><input type="text" value="John" name="UserName"></dd>
+         <dt>Age</dt>
+         <dd><input type="number" value="22" name="Age"></dd>
+         <dt>Address</dt>
+         <dd><input type="text" value="Hyd" name="Address"></dd>
+      </dl>
+      <button>Save</button>
+   </form>
+</body>
+</html>
+
+        - Symbol type configure a hidden property for object
+
+                    var  UserId = Symbol()
+
+        - Symbol type can store data and provide access to data when reffered
+          individually.
+
+                    var User = {
+                        [UserId] : "John_NIT",
+                        UserName: "John",
+                        Age:22
+                      }
+                document.write("UserId=" + User[UserId]);
+
+        - Symbol type is not accessible over iterations.
+
+                    for(var property in User)
+                    {
+                     document.write(property + "<br>");
+                    }                    
+
+EX:
+<script>
+     var UserId = Symbol();
+     var User = {
+        [UserId]: "John_NIT",
+        UserName: "John",
+        Age: 22,
+        City: "Hyd",
+        Course: "Java"
+     }
+     for(var property in User){
+       document.write(property + "<br>");
+     }
+     document.write("UserId=" + User[UserId]);
+</script>
+
+                                    Non-Primitive Types
+    - They are mutable types.
+    - Their stucture can change according to state and situation.
+    - They don't have any fixed range for value.
+    - The value range varies according to the memory available.
+    - They are stored in memory heap.
+    - JavaScript non-primitive types are
+            1. Array
+            2. Object
+            3. Map
+
+                                        Array Type
+    - Arrays in computer programming are used to reduce overhead and complexity.
+    - Arrays can reduce overhead by storing values in sequential order.
+    - Arrays can reduce complexity by storing multiple values under one name.
+    - Arrays can store various types of values.
+    - Arrays can change size dynamically.
+    - Array is a formation of sequentially arranged elements, which can be accessed
+      in random.
+
+    Configuring Array:
+    1. Declare Array
+    2. Initialize or Assign memory for Array
+
+    - Array can be declared by using var, let or const.
+
+            var  products;
+            var  categories;
+            let   students;
+            const employees;    // needs initializer
+
+    - Array memory is initialized or assigned by using 2 techniques
+            a) Array meta character        [ ]
+            b) Array Constructor          Array()
+
+            let  products = [ ];            // initializing memory
+                  (or)    
+            let products;
+            products = [ ];                // assigning memory
+
+
+            let  products = new Array();
+                   (or)
+            let  products;
+            products = new Array();

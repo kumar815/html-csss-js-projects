@@ -1,0 +1,249 @@
+Timer Events in JavaScript
+Sudhakar Sharma
+•
+20 May
+Date Type
+- new Date()
+- Date Methods
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script type="text/javascript">
+        var months = ["January", "Feb", "March", "April", "May","June","July"];
+        var weekdays = ["Sunday", "Mon", "Tue", "Wed", "Thu", "Fri", "Saturday"];
+
+        function DisplayClock(){
+            var now = new Date();
+            document.getElementById("clock").innerHTML = `${weekdays[now.getDay()]} ${now.getDate()} - ${months[now.getMonth()]} ${now.getFullYear()}`;
+            var hrs = now.getHours();
+            var salute = document.getElementById("salute");
+            if(hrs>=00 && hrs<=12) {
+                salute.innerHTML = "Good Morning";
+            } else if(hrs>=13 && hrs<=16) {
+                salute.innerHTML = "<span class='bi bi-sunrise-fill'></span> Good Afternoon";
+            } else if(hrs>=16 && hrs<=23) {
+                salute.innerHTML = "Good Evening";
+            }
+        }
+        function DisplayTime(){
+            var now = new Date();
+            document.getElementById("time").innerHTML = now.toLocaleTimeString();
+        }
+        function bodyload(){
+            DisplayClock();
+            setInterval(DisplayTime,1000);
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <div class="btn-toolbar bg-danger text-white d-flex justify-content-between">
+        <div class="btn-group">
+            <button class="btn btn-danger">Shopper.</button>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-danger">Home</button>
+            <button class="btn btn-danger">Pages</button>
+            <button class="btn btn-danger">Blog</button>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-danger"><span id="salute"></span></button>
+            <button class="btn btn-danger"><span id="clock"></span></button>
+            <button class="btn btn-danger"><span id="time"></span></button>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+                                Timer Events in JavaScript
+setTimeout()
+clearTimeout()
+setInterval()
+clearInterval()
+
+setTimeout()
+- It is used to handle "debounce", which is used to control signal bounce in electronic devices.
+- It will load the task into memory and locks for specific duration.
+- In other terminology is called "thread - sleep".
+
+Syntax:
+        setTimeout(function(){ }, interval);
+
+- To erase the function from memory you can use "clearTimeout()".
+
+Syntax:
+        clearTimeout(functionRefName);
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function Msg1(){
+            document.querySelector("h1").innerHTML = "Hello !";
+        }
+        function Msg2(){
+            document.querySelector("h1").innerHTML = "How are You?";
+        }
+        function Msg3(){
+            document.querySelector("h1").innerHTML = "Welcome to JavaScript";
+        }
+        var m1, m2, m3;
+        function bodyload(){
+           m1 = setTimeout(Msg1,3000);
+           m2 = setTimeout(Msg2,6000);
+           m3 = setTimeout(Msg3,12000);
+        }
+        function Clear2(){
+            clearTimeout(m2);
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <button onclick="Clear2()">Clear Message - 2</button>
+    <h1 align="center"></h1>
+</body>
+</html>
+
+setInterval()
+- It is used to load task into memory and release into process at regular time intervals.
+- It repeats the task until it is removed from memory.
+
+Syntax:
+        setInterval(function() { }, timeInterval)
+
+- You can clear the function from memory by using "clearInterval()".
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Image</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script type="text/javascript">
+        var count = 0;
+        function Loading(){
+            count++; // count=count + 1
+            document.getElementById("status").innerHTML = `${count} %`;
+            if(count==100) {
+                document.getElementById("loadingContainer").style.display = "none";
+                document.getElementById("previewContainer").style.display = "block";
+            }
+        }
+        function LoadImageClick(){
+            document.getElementById("loadingContainer").style.display = "block";
+            document.getElementById("btnContainer").style.display = "none";
+            setInterval(Loading,100);
+        }
+    </script>
+</head>
+<body class="container-fluid d-flex justify-content-center align-items-center" style="height:500px">
+   <div>
+    <div id="btnContainer">
+        <button onclick="LoadImageClick()" class="btn btn-success">Load Image</button>
+    </div>
+    <div id="loadingContainer" class="text-center" style="display: none;">
+        <div class="spinner-border text-success"></div>
+        <p> <span id="status"></span> Loading...</p>
+    </div>
+    <div id="previewContainer" style="display: none;">
+        <img src="../public/images/fashion1.jpg" width="300" height="400">
+    </div>
+   </div>
+</body>
+</html>
+
+
+Ex: Timer Events
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Image</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script type="text/javascript">
+        var count = 0;
+        function Loading(){
+            var img = document.querySelector("img");
+            count++; // count=count + 1
+            document.getElementById("status").innerHTML = `${count} %`;
+            document.getElementById("progress").value = count;
+            if(count==100) {
+                document.getElementById("loadingContainer").style.display = "none";
+                document.getElementById("previewContainer").style.display = "block";
+                img.style.animationName = "ZoomIn";
+                img.style.animationDuration = "5s";
+            }
+        }
+        var loading;
+        function LoadImageClick(){
+            document.getElementById("loadingContainer").style.display = "block";
+            document.getElementById("btnContainer").style.display = "none";
+            loading = setInterval(Loading,100);
+        }
+        function PauseClick(){
+            clearInterval(loading);
+        }
+        function ResumeClick(){
+            loading = setInterval(Loading,100);
+        }
+    </script>
+    <style>
+        progress {
+            width: 300px;
+            height: 20px;
+        }
+        @keyframes ZoomIn {
+            from {
+                width:50px;
+                height: 50px;
+            }
+            to {
+                width: 300px;
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="container-fluid d-flex justify-content-center align-items-center" style="height:500px">
+   <div>
+    <div id="btnContainer">
+        <button onclick="LoadImageClick()" class="btn btn-success">Load Image</button>
+    </div>
+    <div id="loadingContainer" class="text-center" style="display: none;">
+        <div>
+            <progress id="progress" min="1" max="100" value="1"></progress>
+        </div>
+        <div>
+            <button onclick="PauseClick()" class="btn btn-primary"> || </button>
+            <button onclick="ResumeClick()" class="btn btn-success"> > </button>
+        </div>
+        <p> <span id="status"></span> Loading...</p>
+    </div>
+    <div id="previewContainer" style="display: none;">
+        <img src="../public/images/fashion1.jpg" width="300" height="400">
+    </div>
+   </div>
+</body>
+</html>

@@ -1,0 +1,217 @@
+Data Types - Number Type
+
+Data Types
+1. Primitive Types
+2. Non-Primitive Types
+
+                                    Primitive Types
+- Immutable types
+- Fixed range for values
+- Stored in memory stack [LIFO]
+- JavaScript Primitive Types
+    1. Number
+    2. String
+    3. Boolean
+    4. Null
+    5. Undefined
+    6. Symbol
+
+                                    Number Type
+-  JavaScript number type refers to numeric values which include
+   
+        Signed Integer            -6
+        Unsigned Integer        4
+        Floating Point            34.00
+        Double                    342.535
+        Decimal                      3573.30        [29 decimal places]
+        Binary                        0b1010        10
+        Hexa                        0fx023
+        Octa                        0o724
+        Bigint                        2n
+        Exponent                    2e3            [2000]   2x10(3)
+
+- Every input from HTML is considered as string type, which you have to convert into number by using parsing methods
+
+        parseInt()
+        parseFloat()
+
+Syntax:
+        var  age = "22";
+        document.write(age + 1);        // 221
+
+        var age = parseInt("22");
+        document.write(age + 1);        // 23
+
+        var  rate = parseInt("12.45");
+        document.write(rate + 1);        //13
+
+        var rate = parseFloat("12.45");
+        document.write(rate + 1);        // 13.45
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function SubmitClick(){
+            var rate = parseFloat(document.getElementById("lstRate").value);
+            document.write("You Interest rate is revised with 1 as per RBI rules :" + (rate+1) + " from next month.");
+        }
+    </script>
+</head>
+<body>
+    Select Interest Rate :
+    <select id="lstRate">
+        <option>14.34</option>
+        <option>16.31</option>
+        <option>17.56</option>
+        <option>19.47</option>
+        <option>20.21</option>
+    </select>
+    <button onclick="SubmitClick()">Submit</button>
+</body>
+</html>
+
+- You can validate the number input by using the function  "isNaN()"
+-  isNaN() is a boolean function that returns "true" when input value is not a number.
+
+Syntax:
+        var age = "3A";
+       
+         if(isNaN(age)) {            => true
+
+         }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function SubmitClick(){
+            var age = document.getElementById("txtAge").value;
+            if(isNaN(age)){
+                document.getElementById("error").innerHTML= "Age must be a number";
+            } else {
+                document.write("Your age is " + age);
+            }
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>Your Age</dt>
+        <dd>
+            <input type="text" id="txtAge">
+        </dd>
+        <dd id="error" style="color:red"></dd>
+    </dl>
+    <button onclick="SubmitClick()">Submit</button>
+</body>
+</html>
+
+- You have to convert a numeric value into "string" to apply string formats.
+- JavaScript numeric values are converted into string by using "toString()" function.
+
+Syntax:
+    var price = 56000.33;                        // number
+    var formatted = price.toString();            // string
+
+- JavaScript provides "Math" object to handle various mathematical operations on numeric values.
+
+            Math.PI
+            Math.sqrt()
+            Math.pow()
+            Math.random()
+            Math.round()
+            Math.floor()
+            Math.ceil()
+            Math.sin()
+            Math.cos()
+            Math.tan() etc..
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script type="text/javascript">
+        function AmountChange(){
+            document.getElementById("txtAmount").value = document.getElementById("amountRange").value;
+        }
+        function YearChange(){
+            document.getElementById("txtYears").value = document.getElementById("yearRange").value;
+        }
+        function RateChange(){
+            document.getElementById("txtRate").value = document.getElementById("rateRange").value;
+        }
+        function CalculateClick(){
+            var P = parseInt(document.getElementById("txtAmount").value);
+            var n = parseInt(document.getElementById("txtYears").value) * 12;
+            var r = parseFloat(document.getElementById("txtRate").value)/12/100;
+            var EMI = P * r * Math.pow(1+r,n) / Math.pow(1+r,n)-1;
+            document.getElementById("result").innerHTML = "Loan amount for every month <b> &#8377;" + Math.round(EMI) + "</b>" + " for " + P;
+        }
+    </script>
+</head>
+<body class="container-fluid">
+    <h3>EMI Calculator</h3>
+   <div class="p-4 border border-3 border-primary rounded rounded-2">
+    <div class="row mt-2 mb-3">
+        <div class="col">
+            Amount you need <input type="text" id="txtAmount" size="10">
+        </div>
+        <div class="col">
+            for <input type="text" size="2" id="txtYears"> years
+        </div>
+        <div class="col">
+            Interest rate <input type="text" size="4" id="txtRate"> %
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col">
+            <div class="d-flex">
+                <span>&#8377; 50,000</span>
+                <input onchange="AmountChange()" type="range" id="amountRange" min="50000" value="50000" max="1000000" style="width:150px" class="ms-2 me-2 form-range">
+                <span>&#8377; 10,00,000</span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-flex">
+                <span> 1</span>
+                <input onchange="YearChange()" type="range" id="yearRange" min="1" max="5" value="1" style="width:150px" class="ms-2 me-2 form-range">
+                <span> 5</span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-flex">
+                <span> 10.32% </span>
+                <input onchange="RateChange()" type="range" id="rateRange" min="10.32" max="18.42" step="0.01" value="10.32" style="width:150px" class="ms-2 me-2 form-range">
+                <span> 18.42% </span>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col text-end">
+            <button class="btn btn-primary" onclick="CalculateClick()">Calculate</button>
+        </div>
+    </div>
+   </div>
+   <div class="mt-4">
+      <p id="result" class="text-center mt-4"></p>
+   </div>
+</body>
+</html>
+
+BMI Calculator

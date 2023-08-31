@@ -1,0 +1,103 @@
+Variables
+Variables
+- var
+- let
+- const
+
+shadowing
+hoisting
+closure
+
+
+Variable Naming
+- Name must start with alphabet
+- It can be alpha numeric.
+- It can start with "_" special character [only in development]
+- Special characters are not recommended.
+- Name can't have blank spaces.
+- It can't be more than 255 chars.
+- Name must speak what it is.
+                class Employee => object => employee
+- Better to use "camelCase" for names.
+- It can't be a keyword.
+
+Syntax:
+            var  _productName;      => this is not final, it requires further implementation
+            var  2023_sales;            // invalid
+            var  sales_2023;            // valid
+
+Global Scope:
+- It configures variable at module level.
+- So that variable is accessible to all functions in module.
+- You can declare global variables by using the keywords : var, let and const.
+
+Ex:
+<script>
+    var x = 10;                ]
+    let y = 20;                ]        Global in access
+    const z = 30;            ]
+
+   function f1(){
+        document.write("function 1 - <br> x=" + x + "<br>y=" + y + "<br>z=" + z + "<br>");
+   }
+   function f2(){
+    document.write("function 2 - <br> x=" + x + "<br>y=" + y + "<br>z=" + z + "<br>");
+   }
+   f1();
+   f2();
+</script>
+
+FAQ: How to define a global variable in function?
+Ans: By using "window" object of javascript
+
+Syntax:
+        function f1(){
+            window.a = 10;
+        }
+
+Ex:
+<script>
+    "use strict";
+    var x = 10;
+    let y = 20;
+    const z = 30;
+
+   function f1(){
+        window.a = 100;
+        document.write("function 1 - <br> x=" + x + "<br>y=" + y + "<br>z=" + z + "<br>a=" + a + "<br>");
+   }
+   function f2(){
+    document.write("function 2 - <br> x=" + x + "<br>y=" + y + "<br>z=" + z + "<br>a=" + a);
+   }
+   f1();
+   f2();
+</script>
+                                    Data Type
+- In computer programming data type refers to "Data Structure". [DS]
+- Data structure defines the type of data and its range.
+- JavaScript is not a strongly typed language. you can't set restriction for type of value in a variable. But you can validate.
+- JavaScript is implicitly typed language.
+- The type is determined according to the value defined.
+
+            var x;            x is undefined
+            x = 10;        x is number
+            x = true;        x is boolean
+            x = "John";    x is string
+ [It is also reffered as dynamic type]
+- JavaScript Data Types are classified into 2 groups
+
+    a) Primitive Types
+    b) Non-Primtive Types
+
+                                        Primitive Types
+- They are Immutable types.
+- They have a fixed range for value.
+- The structure of value can't change.
+- They are stored in memory stack [LIFO]
+- JavaScript Primitive types
+        a) number
+        b) string
+        c) boolean
+        d) null
+        e) undefined
+        f) symbol

@@ -1,0 +1,190 @@
+Selection Statements : switch
+
+Selection Statements
+- IF Select
+    a) Forward Jump
+    b) Simple Decision
+    c) Multi Level
+    d) Multiple Choices
+
+                                Switch Statement
+- In electronics switch is used to interrupt the flow of electrons.
+- There are various types of switches
+        a) Push Button    
+        b) Toggle Switch
+        c) Joystick
+        d) Selector
+Syntax:
+        switch(value | expression)
+        {
+          case  value|expression:
+            statements;
+            jump;
+          default:
+            statements;
+            jump;
+        }
+
+Ex:
+<script>
+    var n = parseInt(prompt("Enter Number"));
+    switch(n)
+    {
+        case 1:
+        document.write("One");
+        break;
+        case 2:
+        document.write("Two");
+        break;
+        case 3:
+        document.write("Three");
+        break;
+        case 4:
+        document.write("Four");
+        break;
+        default:
+        document.write("Please enter 1 to 4 only");
+        break;
+    }
+</script>
+
+FAQ's:
+1. Can we define switch without default?
+A. Yes.
+
+2. Can we define default before or between cases?
+A. Yes.
+
+3. Can we define case without break?
+A. Yes. It will stop when next break occurs or will stop at the end of switch.
+
+4. Can we define case with return as jump?
+A. Yes.
+
+5. What is difference between break and return?
+A. Break will stop the block but still continue in function.
+    Return will stop the compiling and exits the script.
+
+6. Can we define any another data type as case value?
+A. Yes.
+
+Ex:
+<script>
+    function f1(){
+        var choice = prompt("Enter Choice", "yes|no");
+        switch(choice){
+            case "yes":
+            document.write("You selected Yes to continue");
+            break;
+            case "no":
+            document.write("You selected No to stop");
+            break;
+            default:
+            document.write("Please enter yes or no");
+            break;
+        }
+    }
+    f1();
+</script>
+
+
+7. How you define same block to execute for multiple choices?
+A. By writing multiple case statements for same block.
+
+syntax:
+        case 1:
+        case 8:
+            statements;
+            break;
+
+Ex:
+<script>
+    function f1(){
+        var choice = prompt("Enter Choice", "y|n");
+        switch(choice){
+            case "y":
+            case "Y":
+            document.write("You selected Yes to continue");
+            break;
+            case "n":
+            case "N":
+            document.write("You selected No to stop");
+            break;
+            default:
+            document.write("Please enter yes or no");
+            break;
+        }
+    }
+    f1();
+</script>
+
+8. How to write case for range of values?
+A. We can write the range of values by using boolean expression.
+    If case is using boolean expression then always switch value must be "true".
+
+Ex:
+<script>
+    function f1(){
+       var n = parseInt(prompt("Enter Number"));
+       switch(true)
+       {
+          case (n>=1 && n<=10):
+          document.write(`Your number ${n} is between 1 to 10`);
+          break;
+          case (n>10 && n<=20):
+          document.write(`Your number ${n} is between 11 to 20`);
+          break;
+       }
+    }
+    f1();
+</script>
+
+Summary:
+if, else, switch, case ,default
+
+
+                         Looping Control Statements
+
+- Looping is the process of executing a set of statements repeatedly based on initialization, condition and counter.
+- Loops are created by using
+
+        a) for
+        b) while
+        c) do while
+
+1. The For loop:
+- It is used by developer when he is sure about the number of iterations.
+- It is good for the collection that doesn't change dynamically.
+- Iteration counter can't change dynamically.
+
+Syntax:
+    for(initialization; condition; counter)
+    {
+    }
+
+Ex:
+    for(var i=1; i<=10; i++)
+    {
+        statements;    
+    }
+
+2. while and do while
+- These are good for collection where iteration counter have to change dynamically.
+- There is no fixed range for values.
+- while can execute only when condition is true.
+- do while can execute the statements at least once even when the condition is false.
+
+Syntax:
+    while(condition)
+    {
+        statements;
+        counter;
+    }
+Syntax:
+    do {
+       statements;
+       counter;
+    } while(condition);
+
+Task :
+          Enter Pin : 6993      => 3 times it can be wrong, 4 th attempt must block

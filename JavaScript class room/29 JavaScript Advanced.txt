@@ -1,0 +1,126 @@
+JavaScript Advanced
+
+Function Generators
+- Function Generator configures an iterator.
+- Iterator is a design pattern used to access elements from collection in sequential order.
+- JavaScript Iterators are  forEach(), for..in, for..of, map(), find(), filter() etc..
+
+Syntax:    
+        collection.map(function(item){
+           
+        })
+
+        function* map(){
+           yeild value;
+           yeild value;
+        }
+        value, next(), return, done [true|false]
+       
+FAQ: What is the architecture behind "forEach() or map()"?
+Ans: Both are function generators
+        a) value => returns the value in collection by using yeild.
+        b) done  => returns boolean true if it is end of collection.
+        c) next() => It moves the next value in collection.
+        d) return => It terminates the iteration.
+
+Ex:
+<script>
+    function* ReadCollection(){
+        yield 10;
+        yield 20;
+        yield 30;
+    }
+    var data = ReadCollection();
+    console.log(
+        `
+            ${data.next().value} \n
+            ${data.next().value} \n
+            ${data.next().value} \n
+           
+        `
+    )
+</script>
+
+                    Function Callbacks and Promise
+
+- A callback function executes automatically according to the state and situation.
+- It is synchronous. It uses blocking technique.
+- If a function is executing then it will block all other functions.
+- Synchronous is slow in rendering the result.
+
+Syntax:
+        function  Name(success, failure)
+        {
+          success();
+          failure();
+        }
+
+Ex:
+<script>
+    function  FetchData(url, success, failure){
+        if(url==="http://fakestoreapi.com&quot;){
+            success();
+        } else {
+            failure();
+        }
+    }
+    FetchData(
+        prompt("Enter URL"),
+        function(){
+            document.write("Data Fetched Successfully..");
+        },
+        function(){
+            document.write("Invalid URL - Unable to Fetch");
+        }
+    )
+</script>
+
+Note: To handle Asynchronous function JavaScript ES5 introduced
+        a) async
+        b) await
+      However ES6+ version prefer using Promise().
+
+- A JavaScript promise will execute function using Async technique.
+- It is an unblocking technique, without blocking the other request it can execute the functions.
+- It is faster.
+- Promise comprises various states
+    a) pending
+    b) rejected
+    c) resolved
+
+Syntax:
+    var reference = new Promise(function(resolve){ }, function(reject){ });
+    reference.then().catch().finally()
+
+    then()    it uses a callback function that executes when resolved
+    catch()    will execute when rejected
+    finally()    will execute always
+
+Ex:
+<script>
+    var FetchData = new Promise(function(resolve){
+        resolve('Data Fetched Successfully..');
+    }, function(reject){
+        reject('Unable to Fetch - Invalid');
+    });
+   
+    FetchData(function(url){
+        url = prompt("Enter Url");
+    }).then(function(response){
+        document.write(response);
+    }).catch(function(error){
+        document.write(error);
+    })
+
+</script>
+
+                        JavaScript AJAX
+
+- Asynchronous JavaScript And XML [AJAX]
+- Async request will execute without blocking other requests
+- XML is a medium used to transport data across requests.
+  [Extensible Markup Language]
+- Ajax can configure Partial PostBack [Without reloading complete page new details can be added to page].
+- Without submitting complete page, you can submit specific portion of page.
+- Ajax is handled by using
+    "XMLHttpRequest" object

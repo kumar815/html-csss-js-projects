@@ -1,0 +1,185 @@
+Functions , closure, generator, recursion, arrow
+
+JavaScript Functions
+- Function Definition, Signature, Parameters
+- Rest Parameters and Spread
+
+                          Function Return
+- Every function is void type.
+- Void discards the memory after using for function.
+- You can keep the memory of function alive to store data by using "return" in function.
+
+Syntax:
+    function  Name()
+    {
+        return   value;
+    }
+
+    Name = value;
+
+Ex:
+    function Addition(a,  b)
+    {
+      return a + b;
+    }
+    document.write("Addition=" + Addition(10,30));
+
+FAQ:
+1. What type of value a function can return?
+A. Any type
+    a) Primitive type
+    b) Non Primitive type
+
+Ex:
+<script>
+    function GetProducts(){
+        return [
+            {Name: "TV", Price:45000.54},
+            {Name: "Mobile", Price: 13000.33}
+        ];
+    }
+    GetProducts().map(function(product){
+        document.write(`${product.Name} - ${product.Price}<br>`);
+    })
+</script>
+
+2. Can a function have multiple "return" keywords?
+A. Yes. It is used for conditional rendering.
+
+Syntax:
+    function  Name()
+    {
+        if(condition)
+        {
+        return A;
+        } else {
+        return B;
+        }
+    }
+
+3. Can we use return in a function without returning any value?
+A. Yes.
+
+Syntax:
+    function  Name()
+    {
+      statement-1;
+      statement-2;
+      return;
+      statement-3;
+    }
+
+                        Function Closure
+
+- Closure is a scope where the members of outer function are accessible to inner function.
+- In closure you can't access the members of inner function in outer, you have to use "return" to keep the memory of inner function and access in outer function.
+
+Ex:
+<script>
+    function Outer(){
+        var a = 10;
+        function Inner(){
+            var b = 20;
+            var c = a + b;
+            return c;
+        }
+        document.write("C=" + Inner());
+    }
+    Outer();
+</script>
+
+                        Function Recursion
+- Recursion is the process of invoking a function with in the context of same function.
+- It is used to create batch operations.
+       
+Syntax:
+    function  f1()
+    {
+        f1();        // recursion
+    }
+
+Ex:
+<script>
+    function Factorial(n){
+        if(n==0){
+            return 1;
+        } else {
+            return n * Factorial(n-1);
+        }
+    }
+    document.write(`Factorial of 6 is ${Factorial(6)}`);
+</script>
+
+                        Arrow Functions
+
+- It is a short hand technique of writing a function.
+- It is good for defining function expressions.
+
+Syntax: without arrow
+
+  function  Hello()
+  {
+    return "Hello ! JavaScript";
+  }
+
+Syntax: with arrow
+
+  const  Hello = () => "Hello JavaScript";
+
+   ( )            function
+   =>            definition and return
+
+Ex:
+<script>
+     var add = (a,b)=> a + b;
+     document.write("Addition=" + add(10,20));
+</script>
+
+Ex:
+<script>
+    var hello = () => "Hello World";
+    document.write(hello());
+</script>
+
+Ex:
+<script>
+    var hello = name => `Hello ! ${name}`;
+    document.write(hello("John"));
+</script>
+
+Ex:
+<script>
+    fetch("http://fakestoreapi.com/products&quot;)
+    .then(response => response.json())
+    .then(products => {
+        products.map(product=> {
+            document.write(product.title + "<br>");
+        })
+    })
+</script>
+
+
+Ex:
+
+<script>
+    var sales = [50000,32240, 57000, 25699];
+    var result = sales.filter(value=> value<50000);
+    document.write(result);
+</script>
+
+                        Function Generator
+- It is used to create iterators.
+- Iterator is design pattern used to access elements from a collection in sequential order.
+- A function generator is defined using "*" , which refers to all elements [zero or more]
+- A function generator returns value by using "yeild" operator.
+
+Ex:
+<script>
+    function* ReadValues(){
+        yield 10;
+        yield 20;
+        yield 30;
+    }
+    console.log(ReadValues().next());
+
+</script>

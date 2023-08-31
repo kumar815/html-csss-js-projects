@@ -1,0 +1,349 @@
+JavaScript Statements
+
+JavaScript Special Operators
+
+1. new        : It is dynamic memory allocating operator.
+
+Syntax:
+        var products = new Array()
+        var date  = new Date()
+
+2. delete    : It is used to delete any property from object.
+
+Syntax:
+         delete   product.Price;
+
+3. in        : It is used to verify existance of property in an object.
+
+Syntax:
+           "Price" in product            => true  if price exists.
+
+4. typeof    : It is used to return the data type of value stored in reference.
+
+Syntax:
+        var  price = 34000.44;
+        var  stock = true;
+
+        typeof  price            => number
+        typeof  stock            => boolean
+
+5. instanceOf:     It returns true of object is instance of specified class.
+
+Syntax:
+            var  products =  [ ];
+           
+            products  instanceOf   Array        => true
+            products  instanceOf   Date            => false
+
+6. void        :  It is used to discard the return of any element.
+
+Syntax:
+                <a href="javascript:void()"> Home </a>
+
+                            JavaScript Statements
+
+- A statement is used to control the execution flow.
+- Statements are classified into various groups
+
+1. Selection Statements
+        if, else, switch, case, default
+
+2. Looping Control
+        for, while, do while
+
+3. Iteration Statements
+        for..in, for..of
+
+4. Jump Statements
+        break, return, continue
+
+5. Exception Handling Statements
+        try, catch, throw, finally
+
+                                Selection Statements
+- Selection statements are used in decision making.
+
+1. The "IF" select
+
+a) Forward Jump    : In this approach the statements are executed only when condition                               is true. There is no alternative.
+
+Syntax:
+            if (condition )
+            {
+             statement on true;
+            }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var userDetails = {
+            Card: "4444555566667890",
+            Cvv: "3456",
+            Expiry:"2024"
+        }
+        function VerifyCard(){
+            var card = document.getElementById("Card").value;
+            if(card===userDetails.Card){
+                document.getElementById("cvvContainer").style.display ="block";
+            }
+        }
+        function VerifyCvv(){
+            var cvv = document.getElementById("Cvv").value;
+            if(cvv===userDetails.Cvv) {
+                document.getElementById("expiryContainer").style.display = "block";
+            }
+        }
+        function ExpiryChange(){
+            var expiry = document.getElementById("Expiry").value;
+            if(expiry===userDetails.Expiry){
+                document.getElementById("btnPay").disabled = false;
+            }
+        }
+        function PayClick(){
+            document.write("Payment Success");
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <h3>Payment Details</h3>
+        <dt>Card Number</dt>
+        <dd><input type="text" onblur="VerifyCard()" id="Card"></dd>
+        <div id="cvvContainer" style="display: none;">
+            <dt>CVV</dt>
+            <dd><input type="text" onblur="VerifyCvv()" id="Cvv" size="4"></dd>
+        </div>
+        <div id="expiryContainer" style="display: none;">
+            <dt>Expiry</dt>
+            <dd>
+                <select id="Expiry" onchange="ExpiryChange()">
+                    <option>2023</option>
+                    <option>2024</option>
+                    <option>2025</option>
+                </select>
+            </dd>
+        </div>
+        <button id="btnPay" disabled onclick="PayClick()">Pay</button>
+    </dl>
+</body>
+</html>
+
+2. Simple Decision:  It provides one alternative if the given condition evaluates to false.
+
+Syntax:
+        if (condition)
+        {
+           statement on true;
+        }
+        else
+        {
+           statement on false;
+        }
+
+                "If and else clause"
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var userDetails = {
+            Card: "4444555566667890",
+            Cvv: "3456",
+            Expiry:"2024"
+        }
+        function VerifyCard(){
+            var card = document.getElementById("Card").value;
+            if(card===userDetails.Card){
+                document.getElementById("cvvContainer").style.display ="block";
+            } else {
+                document.getElementById("btnPay").disabled = true;
+            }
+        }
+        function VerifyCvv(){
+            var cvv = document.getElementById("Cvv").value;
+            if(cvv===userDetails.Cvv) {
+                document.getElementById("expiryContainer").style.display = "block";
+            } else {
+                document.getElementById("btnPay").disabled = true;
+            }
+        }
+        function ExpiryChange(){
+            var expiry = document.getElementById("Expiry").value;
+            if(expiry===userDetails.Expiry){
+                document.getElementById("btnPay").disabled = false;
+            } else {
+                document.getElementById("btnPay").disabled = true;
+            }
+        }
+        function PayClick(){
+            document.write("Payment Success");
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <h3>Payment Details</h3>
+        <dt>Card Number</dt>
+        <dd><input type="text" onblur="VerifyCard()" id="Card"></dd>
+        <div id="cvvContainer" style="display: none;">
+            <dt>CVV</dt>
+            <dd><input type="text" onblur="VerifyCvv()" id="Cvv" size="4"></dd>
+        </div>
+        <div id="expiryContainer" style="display: none;">
+            <dt>Expiry</dt>
+            <dd>
+                <select id="Expiry" onchange="ExpiryChange()">
+                    <option>2023</option>
+                    <option>2024</option>
+                    <option>2025</option>
+                </select>
+            </dd>
+        </div>
+        <button id="btnPay" disabled onclick="PayClick()">Pay</button>
+    </dl>
+</body>
+</html>
+
+3. Multi Level Decisions : It uses a forward jump approach and also provides an alternative for every decision.
+
+Syntax:
+    if (condition1)
+    {
+        if(condition2)
+        {
+          statement on both conditions true;
+        }
+        else {
+          statement on condition2 false;
+        }
+    } else {
+        statement on condition1 false;
+    }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var userDetails = {
+            Card: "4444555566667890",
+            Cvv: "3456",
+            Expiry:"2024"
+        }
+        function PayClick(){
+            var card = document.getElementById("Card").value;
+            var cvv = document.getElementById("Cvv").value;
+            var expiry = document.getElementById("Expiry").value;
+            var msg = document.getElementById("msg");
+
+            if(card===userDetails.Card){
+                if(cvv===userDetails.Cvv){
+                    if(expiry===userDetails.Expiry){
+                        document.write("Payment Success");
+                    } else {
+                        msg.innerHTML = "Invalid Expiry"
+                    }
+                } else {
+                    msg.innerHTML = "Invalid CVV"
+                }
+            } else {
+                msg.innerHTML = "Invalid Card";
+            }
+           
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <h3>Payment Details</h3>
+        <dt>Card Number</dt>
+        <dd><input type="text" id="Card"></dd>
+        <div id="cvvContainer">
+            <dt>CVV</dt>
+            <dd><input type="text" id="Cvv" size="4"></dd>
+        </div>
+        <div id="expiryContainer">
+            <dt>Expiry</dt>
+            <dd>
+                <select id="Expiry" >
+                    <option>2023</option>
+                    <option>2024</option>
+                    <option>2025</option>
+                </select>
+            </dd>
+        </div>
+        <button id="btnPay" onclick="PayClick()">Pay</button>
+        <p align="center" id="msg"></p>
+    </dl>
+</body>
+</html>
+
+4. Multiple Choices        : It is an approach where more than one choice is provided
+                              for same task.
+
+Ex:
+    if(condition1-choice1)
+    {
+        statement on 1 true;
+    }
+    else if(condition2-choice-2)
+    {
+        statement on 2 true;
+    }
+    else {
+        statement on false;
+    }
+
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var userDetails = {
+            UserId: "john_nit",
+            Mobile: "+919876543210",
+            Email: "john@outlook.com"
+        };
+        var flag = "";
+        function SubmitClick(){
+            var userid = document.getElementById("UserId").value;
+            if(userid===userDetails.Email){
+                flag = `Your activation code sent to ${userid}`;
+            } else if(userid===userDetails.Mobile){
+                flag = `OTP sent to your mobile ${userid}`;
+            } else {
+                document.write("Invalid Email or Mobile");
+            }
+            document.write(flag);
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>Your Email or mobile phone number</dt>
+        <dd><input type="text" id="UserId"></dd>
+    </dl>
+    <button onclick="SubmitClick()">Submit</button>
+</body>
+</html>

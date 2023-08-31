@@ -1,0 +1,194 @@
+Array Methods
+
+- What is Array? Its role in application.
+    - How to configure array?
+            var products = [ ]  or  new Array()
+
+    FAQ: What is difference between [ ] and Array()?
+    Ans:  [ ] allocates static memory for array, which is a contineous memory.
+            new Array() allocates dynamic memory for array, which is discreet memory.
+
+
+    Storing Data into Array:
+
+    - You can initialize values directly into array.
+
+            var  values = [ 10, "A", true ];
+
+    - You can assign values into array by using the property reference.
+    - Property is a string reference that maps to the index number in memory.
+
+                    Property    ["0"]        =>   Index [0]
+
+    Syntax:
+            var values = [ ];
+            values[0] = 10;            // valid
+            values["1"] = 20;            // valid
+
+    Accessing Data from Array:
+    - You can use the property reference of array to read any element from memory.
+
+    Syntax:
+            document.write(values[0]);                // valid
+            document.write(values["1"]);            // valid
+   
+    Ex:
+    <script>
+      var values = [];
+      values[0] = 10;
+      values["1"] = "A";
+      values[2] = true;
+      for(var property in values)
+      {
+            document.write(`[${property}-${typeof property}] : ${values[property]}-${typeof values[property]} <br>`);
+      }
+      document.write(values["2"]);
+</script>
+
+                            JavaScript Array Methods
+     
+    1. Various techniques for reading elements from array
+
+        toString()                It returns all array elements separated with "," delimiter
+        join()                    It returns all array elements with custom delimiter.
+        slice()                    It returns the elements between specified index.
+        find()                    It returns only one element that matches the given condition.
+                                [First occurance of element in array is returned]
+        filter()                    It returns multiple elements that match the given condition.
+        map()                    It returns all array elements using an iterator.
+        forEach()                It returns all array elements using callback with index.
+
+    Note: You can use various programming statements for reading array elements.
+       
+        for..in                    It is an iterator for reading all array properties.
+        for..of                    It is an iterator for reading all array elements [values].
+        for                        It is a loop that can access elements using index reference.
+        while, do while        These are loops with indefinite conditions.
+
+Ex-1: tostring, join, slice
+
+<script>
+     var sales = [34000, 32000, 67000, 42000, 57000];
+     document.write(`
+            To String :  ${sales.toString()} <br>
+            Join      :  ${sales.join("-->")} <br>
+            Slice     :  ${sales.slice(1,2)} <br>
+     `);
+
+</script>
+
+Ex-2: Map
+
+<script>
+     var sales = [34000, 32000, 67000, 42000, 57000];
+     sales.map(function(value){
+         document.write(`<li>${value}</li>`);
+     })
+</script>
+
+Ex-3: Find and Filter
+
+<script>
+     var sales = [34000, 32000, 67000, 42000, 57000];
+     var result = sales.find(function(value){
+        return value<50000;
+     });
+     document.write(result);
+</script>
+
+<script>
+     var sales = [34000, 32000, 67000, 42000, 57000];
+     var result = sales.filter(function(value){
+        return value<50000;
+     });
+     document.write(result);
+</script>
+
+Ex-4: forEach
+
+<script>
+     var sales = [34000, 32000, 67000, 42000, 57000];
+     sales.forEach(function(value, i){
+         document.write(`${value} [${i}] <br>`);
+     })
+</script>
+
+Ex-5:  for loop
+
+<script>
+     var sales = [34000, 32000, 67000, 42000, 57000];
+     let start= 0;
+     let end = 0;
+     start = performance.now();
+     for(var i=0; i<sales.length; i++){
+        document.write(sales[i] + "<br>");
+     }
+     end = performance.now();
+     document.write(`Total Time Take to Execute Loop : ${end-start}`);
+</script>
+
+Ex-6: for..in
+
+<script>
+     var sales = [34000, 32000, 67000, 42000, 57000];
+     let start= 0;
+     let end = 0;
+     start = performance.now();
+     for(var property in sales){
+       document.write(`[${property}] : ${sales[property]} <br>`);
+     }
+     end = performance.now();
+     document.write(`Total Time Take to Execute Loop : ${end-start}`);
+</script>
+
+      Dynamically Creating and Adding HTML Elements into Page:
+
+    1. You have to create any element by using the method
+               
+            document.createElement("p | img | ol  | select | input | table | dd..");
+
+    2. Assign memory reference for new element
+
+            let  element = document.createElement("elementName");
+            let  button = document.createElement("button");
+   
+    3. Set properties for button element
+
+            button.width
+            button.height
+            button.innerHTML ...
+
+    4.  Add element into page by using the method  "appendChild()".
+
+            document.getElementById("container").appendChild(button);
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <script>
+            function bodyload(){
+                  var btn = document.createElement("button");
+                  btn.innerHTML = "Delete";
+
+                  var pic = document.createElement("img");
+                  pic.src="../public/images/a1.jpg";
+                  pic.width = "200";
+                  pic.height = "200";
+
+                  document.getElementById("container").appendChild(pic);
+                  document.getElementById("container").appendChild(btn);
+                 
+            }
+      </script>
+</head>
+<body onload="bodyload()">
+      <div id="container">
+            <button>Insert</button>
+      </div>
+</body>
+</html>

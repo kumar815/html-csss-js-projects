@@ -1,0 +1,236 @@
+JavaScript Classes
+
+JavaScript OOP
+- Modules
+- export
+- import
+- default export
+- Class
+
+                            Class Members
+- Every JavaScript class allows only following as class members
+
+    1. Property
+    2. Accessor
+    3. Method
+    4. Constructor
+
+FAQ: Can we define a variable as class member?
+Ans:  No.
+
+FAQ: Why variable can't be a class member?
+Ans: Variable is immutable and class member can only mutable member.
+
+FAQ: Can we define a variable in class?
+Ans: Yes.
+
+                            Property
+- It is a member of class used to store data.
+- Property can store any type data.
+    a) Primitive type
+    b) Non Primitive type
+- JavaScript class property can be defined just by using a property name.
+- Property will not have any  access modifiers.
+
+Syntax:
+    class Product
+    {
+       Name = "TV";
+       Price = 45000.44;
+       Stock = true;
+       Cities = [ ];
+       Rating = { Rate: 4.2, Count: 600 };
+     }
+
+- You can access the class properties by using "this" keyword within the class.
+- You can access the class properties outside class by using instance of class.
+
+Syntax:
+       var  tv = new Product();
+       tv.Name = newValue;
+
+Ex:
+<script>
+    class Product
+    {
+       Name = "Samsung TV";
+       Price = 45000.44;
+       Rating = {Rate:4.3, Count:450}
+    }
+    let tv = new Product();
+    document.write(`Name=${tv.Name}<br>Price=${tv.Price}<br>Rating=${tv.Rating.Rate}`);
+</script>
+
+                        Accessors
+- Accessor provides a fine grained control over property.
+- Accessor controls read and write operations on a property.
+- Accessors are 2 types
+       
+    a) Getter      get()
+    b) Setter        set()
+
+- Getter is used to read and return a value present in property.
+- Setter is used to write and store a value in property.
+
+Syntax:
+        propertyName = " ";
+       
+        get  aliasName()
+        {
+          return  this.propertyName;
+        }
+
+        set  aliasName(newValue)
+        {
+           this.propertyName = newValue;
+        }
+
+Ex:
+<script>
+      var username = prompt("Enter User Name");
+      var role = prompt("Enter Your Role", "Customer|Admin");
+      var productname = prompt("Enter Product Name");
+
+      class Product
+      {
+          _productName;
+
+          get ProductName(){
+             return this._productName;
+          }
+
+          set ProductName(newName){
+            if(role=="admin"){
+                this._productName = newName;
+            } else {
+                document.write(`Hello ! ${username} your role ${role} is not authorized to set product name.`);
+            }
+          }
+
+      }
+      let obj = new Product();
+      obj.ProductName = productname;
+      if(obj.ProductName){
+         document.write(`Product Name=${obj.ProductName}`)
+      }
+</script>
+
+Ex:
+<script>
+     class Product
+     {
+         Name = "Samsung TV";
+         Rating = {
+             CustomerRating: {Rate:3.5, Count:5600},
+             VendorRating: {Rate:4.2, Count:13}
+         }
+         get VendorRating(){
+            return this.Rating.VendorRating.Rate;
+         }
+     }
+     var obj = new Product();
+     document.write("Vendor Rating=" + obj.VendorRating);
+</script>
+
+
+FAQ: What is difference between a variable and a property?
+Ans:  Variable is immutable
+      Property is mutable
+
+                            Method
+- A method defines the logic.
+- A class related functionality can be defined using method.
+
+FAQ: Can we define a function as class member?
+Ans:  No. But you can have a function in class.
+
+- Method is configure just by using a name and parameters.
+- Method parameters are same as function parameters.
+
+Syntax:
+        class  Name
+        {
+            MethodName(params)
+            {
+            }
+        }
+
+Ex:
+<script>
+   
+     class Product
+     {
+          Name = "Samsung TV";
+          Price = 45000.44;
+          Qty = 2;
+          Total(){
+             return this.Qty * this.Price;
+          }
+          Print(){
+            document.write(`Name=${this.Name}<br>Price=${this.Price}<br>Qty=${this.Qty}<br>Total=${this.Total()}`);
+          }
+     }
+     let obj = new Product();
+     obj.Price = parseFloat(prompt("Enter Price"));
+     obj.Print();
+ 
+</script>
+                        Constructor
+-  A constructor is responsible for instantiation.
+-  It is responsible for creating an object for class.
+- Class objects are created by using a special type of method called constructor.
+- JavaScript constructor is anonymous with constructor keyword.
+
+Syntax:
+    class Demo
+    {
+      constructor(){
+      }
+    }
+
+- Every class have a default constructor.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        class Database
+        {
+            constructor(){
+                document.write("Connected with database<br>");
+            }
+            Insert(){
+                document.write("Record Inserted");
+            }
+            Delete(){
+                document.write("Record Deleted");
+            }
+            Update(){
+                document.write("Record Updated");
+            }
+        }
+        function InsertClick(){
+            var obj = new Database();
+            obj.Insert();
+        }
+        function DeleteClick(){
+            var obj = new Database();
+            obj.Delete();
+        }
+        function UpdateClick(){
+            var obj = new Database();
+            obj.Update();
+        }
+    </script>
+</head>
+<body>
+    <button onclick="InsertClick()">Insert</button>
+    <button onclick="UpdateClick()">Update</button>
+    <button onclick="DeleteClick()">Delete</button>
+</body>
+</html>

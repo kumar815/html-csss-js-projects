@@ -1,0 +1,224 @@
+JSON - with Fetch()
+
+JavaScript Object Type
+- Key and Value
+- Key are string and Value any
+- JSON [JavaScript Object Notation]
+
+                                  Fetch Promise in JavaScript
+- Promise in JavaScript is an "Asyncrhonous" technique used to handle specific operation and return 3 phases.
+        a) Initial
+        b) Fullfilled
+        c) Rejected
+- JavaScript "fetch()" is promise that handle communication with API.
+- It can fetch data from any API using in-build methods and return data to client.
+
+Syntax:
+        fetch("url")
+        .then(function(){
+            executes on success
+         })
+        .catch(function(){
+             executes on failure/ rejected
+        })
+        .finally(function(){
+            executes always
+        })
+
+Ex:
+1. Add a new folder by name "data" into project
+2. Add a new file into data folder
+
+            "product.json"
+
+{
+    "title": "realme C55 (Sunshower, 64GB)",
+    "price": 12999,
+    "rating": {"rate":4.4, "count":20600, "reviews":1200},
+    "photo": "../public/images/realme1.jpg",
+    "features":["4 GB RAM | 64 GB ROM | Expandable Upto 1 TB", "17.07 cm (6.72 inch) Full HD+ Display", "64MP + 2MP | 8MP Front Camera", "5000 mAh Battery","Helio G88 Processor"]
+}
+
+3. Add a new HTML page to present data
+
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart - Mobiles</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        .product {
+            display: grid;
+            grid-template-columns: 3fr 6fr 3fr;
+            column-gap: 20px;
+            font-family: Arial;
+        }
+        ul {
+            margin-left: -30px;
+            color:gray;
+        }
+        li {
+            margin-bottom: 20px;
+        }
+    </style>
+    <script type="text/javascript">
+        function bodyload(){
+            fetch("../data/product.json")
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(product){
+                document.getElementById("lblTitle").innerHTML = product.title;
+                document.getElementById("imgProduct").src = product.photo;
+                document.getElementById("lblPrice").innerHTML = "&#8377;" + product.price;
+
+                product.features.map(function(item){
+                    var li = document.createElement("li");
+                    li.innerHTML = item;
+                    document.getElementById("lstFeatures").appendChild(li);
+                })
+
+                document.getElementById("lblRating").innerHTML = `
+                    <span>${product.rating.rate} <span class="bi bi-star-fill"></span></span>
+                    <b>${product.rating.count} ratings & ${product.rating.reviews} reviews</b>
+                `;
+            })
+            .catch(function(err){
+                console.log(err);
+            })
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <div class="product">
+        <div>
+            <img width="100%" height="300" id="imgProduct">
+        </div>
+        <div>
+            <h2 id="lblTitle"></h2>
+            <div>
+                <span id="lblRating"></span>
+            </div>
+            <div>
+                <ul id="lstFeatures">
+
+                </ul>
+            </div>
+        </div>
+        <div>
+            <h2 id="lblPrice"></h2>
+        </div>
+    </div>
+</body>
+</html>
+
+- JavaScript object can define logic using functions.
+- If object comprises of logic then it is not reffered as JSON.
+- If object comprises of logic with data then you also call it as "Pseudo Class".
+
+Syntax:
+        let obj = {
+                     property1: value,
+                     property2: value,
+                     property3: function() {  }
+                     property4: function() { }
+                }
+
+Ex:
+<script>
+    var product = {
+       "Name": "",
+       "Price": 0,
+       "Qty": 0,
+       "Total": function(){
+            return this.Qty * this.Price;
+       },
+       "Print": function(){
+            document.write(`Name=${this.Name}<br>Price=${this.Price}<br>Qty=${this.Qty}<br>Total=${this.Total()}`);
+       }
+    }
+    product.Name = prompt("Enter Name");
+    product.Price = parseFloat(prompt("Enter Price"));
+    product.Qty = parseInt(prompt("Enter Qty"));
+    product.Print();
+   
+</script>
+
+                                    Array of Objects
+Oracle | MySql | Sql Server
+
+Table:
+        Name            Price            Stock
+        --------------------------------------------
+        TV                34000.33        true
+        Mobile            12000.33        false
+
+JSON: products
+        [    
+         { "Name":"TV", "Price":34000.33, "Stock":true },
+         { "Name": "Mobile", "Price":12000.33, "Stock":false}
+        ]
+
+        Mobile Price :  ${ products[1].Price}
+
+Ex: Nasa API
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function bodyload(){
+            fetch("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY&quot;)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                data.photos.map(function(item){
+                    var tr = document.createElement("tr");
+                    var tdId = document.createElement("td");
+                    var tdPhoto = document.createElement("td");
+                    var tdCamera = document.createElement("td");
+                    var tdRover = document.createElement("td");
+
+                    tdId.innerHTML = item.id;
+                    tdPhoto.innerHTML= `<img src=${item.img_src} width="100" height="100">`;
+                    tdCamera.innerHTML = item.camera.full_name;
+                    tdRover.innerHTML = item.rover.name;
+
+                    tr.appendChild(tdId);
+                    tr.appendChild(tdPhoto);
+                    tr.appendChild(tdCamera);
+                    tr.appendChild(tdRover);
+
+                    document.querySelector("tbody").appendChild(tr);
+
+                })
+            })
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <table width="600" border="1">
+        <thead>
+            <tr>
+                <th>Photo Id</th>
+                <th>Photo</th>
+                <th>Camera Name</th>
+                <th>Rover Name</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+</html>

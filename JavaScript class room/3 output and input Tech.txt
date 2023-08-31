@@ -1,0 +1,315 @@
+Javascript output and input techniques
+
+JavaScript Reference Techniques
+1. By using DOM hierarchy
+2. By using Name
+3. By using ID
+4. By using Query Selector - CSS Selectors
+
+                            JavaScript Output Techniques
+
+    - Programming languages are used to handle communication between user and
+      the device.
+      - A language takes input from user, process the input and generates a response
+      customized to every request.
+    - Output is the process of rendering result to client.
+    - Javascript output is handled by using various properties and methods.
+
+        1. alert()
+        2. confirm()
+        3. document.write()
+        4. innerText
+        5. innerHTML
+        6. outerHTML
+        7. console methods
+         
+
+                                            alert()
+        - Alert is a message box that pops up from browser window.
+        - It is a member of "window" object in BOM.
+        - It can display message and seek confirmation with OK.
+        - It will not allow to cancel.
+
+        Syntax:
+                alert("your message");    
+
+        - Message is a string or expression and only RC data type.
+
+        Syntax:
+                 alert(20 + 20);
+
+        - If you want message in multiple lines then use "\n" for line break.
+
+        Syntax:
+                 alert("line-1 \n line-2");
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output Techniques</title>
+    <script type="text/javascript">
+        function DeleteClick(){
+            alert("Delete Record \n Are you sure Record will be deleted?");
+        }
+    </script>
+</head>
+<body>
+    <button onclick="DeleteClick()">Delete</button>
+</body>
+</html>
+
+                                         confirm()
+
+        - It is JavaScript window method same as alert() but provides cancel button.
+        - "confirm()" is a boolean method, which returns true or false.
+   
+                    true        = on OK click
+                    false        = on Cancel click
+
+        Syntax:
+                    confirm("string | expression");
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output Techniques</title>
+    <script type="text/javascript">
+        function DeleteClick(){
+           flag = confirm("Delete Record \n Are you sure Record will be deleted?");
+           if(flag==true)
+           {
+              alert("Record Deleted Successfully..");
+           }
+           else {
+              alert("Canceled..");
+           }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="DeleteClick()">Delete</button>
+</body>
+</html>
+
+                                        document.write()
+        - It is an output method that renders output in new screen.
+        - It is the output technique that allows a markup for  presentation.
+       
+        Syntax:
+                document.write("string | expression | markup");
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output Techniques</title>
+    <script type="text/javascript">
+        function DeleteClick(){
+           flag = confirm("Delete Record \n Are you sure Record will be deleted?");
+           if(flag==true)
+           {
+              document.write("<font color='green'>Record Deleted Successfully</font>..<br><a href='output.html'>Back</a>");
+           }
+           else {
+              alert("Canceled..");
+           }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="DeleteClick()">Delete</button>
+</body>
+</html>
+
+                                        innerText
+
+            - It is a property used for HTML elements that can display text content.
+                <div>, <span>, <p>, <h2>, <blockquote>, <dt>, <dd>, <li>, <td>..
+
+            Syntax:
+                    element.innerText = "string";
+
+            - innerText is RC data type, and will not allow markup.
+            - If you are trying to render output in same page then you can use innerText.
+
+                                        innerHTML
+
+             - It is similar to inner Text but allows formats for text.
+             - You can render markup by using innerHTML.
+
+            Syntax:
+                 element.innerHTML = "string | expression | markup";
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output Techniques</title>
+    <script type="text/javascript">
+        function DeleteClick(){
+           flag = confirm("Delete Record \n Are you sure Record will be deleted?");
+           if(flag==true)
+           {
+              document.querySelector("p").innerHTML = "<font color='red'>Record Deleted Successfully..</font>";
+           }
+           else {
+              alert("Canceled..");
+           }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="DeleteClick()">Delete</button>
+    <p></p>
+</body>
+</html>
+           
+                                        Console Methods
+        -  Every browser provides a console.
+        -  Console is a CLI [command line tool]  used by developers to test various
+            language related methods and properties.
+        -  Console methods for output are
+                       
+                console.log()                    [contextual]
+                console.warn()
+                console.error()
+                console.info()
+                console.debug()
+
+        Syntax:
+                console.log("string | expression");
+   
+        - console is not for markup.
+        - Multiple lines can be defined by using "\n" as line break.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output Techniques</title>
+    <script type="text/javascript">
+        function DeleteClick(){
+       
+           console.warn("Delete button clicked");
+           flag = confirm("Delete Record \n Are you sure Record will be deleted?");
+           if(flag==true)
+           {
+              document.querySelector("p").innerHTML = "<font color='red'>Record Deleted Successfully..</font>";
+              console.log("OK Clicked");
+           }
+           else {
+              alert("Canceled..");
+              console.error("Cancel Clicked");
+           }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="DeleteClick()">Delete</button>
+    <p></p>
+</body>
+</html>
+
+                                        outerHTML
+
+            - outerHTML is a property similar to innerHTML.
+            - It can replace the existing element with new element.
+            - innerHTML will not replace element, it can just render element with in
+              the cotnext of another element.
+
+        Syntax:
+               element.outerHTML = "string | expression | markup";
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output Techniques</title>
+    <script type="text/javascript">
+        function DeleteClick(){
+       
+           console.warn("Delete button clicked");
+           flag = confirm("Delete Record \n Are you sure Record will be deleted?");
+           if(flag==true)
+           {
+              document.querySelector("p").outerHTML = "<h2>Record Deleted </h2>";
+              console.log("OK Clicked");
+           }
+           else {
+              alert("Canceled..");
+              console.error("Cancel Clicked");
+           }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="DeleteClick()">Delete</button>
+    <p></p>
+</body>
+</html>
+
+                                JavaScript Input Techniques
+        - JavaScript can take input from user by using 3 techniques
+       
+                a) Query String
+                b)  prompt()
+                c)  HTML Form Input Elements
+
+                                           prompt()
+
+        - It is an input box provided by JavaScript "window" object.
+        - It allows to input a string.
+        - prompt() method returns
+   
+                a) null            => cancel
+                b) string        => ok
+
+        Syntax:
+            prompt("Message", "default_value");
+            prompt("Message");
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function NewClick(){
+           result = prompt("Enter Folder Name", "new_folder");
+           if(result==null) {
+              alert("You canceled..");
+           } else if(result=="") {
+              alert("Name can't be empty");
+           } else {
+                document.querySelector("p").innerHTML += "Folder Created : " + result + "<br>";
+           }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="NewClick()">New Folder</button>
+    <p></p>
+</body>
+</html>

@@ -1,0 +1,313 @@
+JavaScript Ajax
+
+JavaScript AJAX
+
+- To handle partial post back.
+- Without reloading the complete page new details can be added to page.
+- Ajax request is defined by using "XmlHttpRequest" object.
+
+        var  obj = new XmlHttpRequest();
+
+        jQuery Ajax        $.ajax()            ]
+        React             axios            ]  => XmlHttpRequest
+        Angular            HttpClient        ]
+
+- Every Http Request object comprises of following properties methods.
+
+        open()         It is used to define the method type, url and async
+
+                     open("GET|POST|PUT|DELETE", Url, true|false);
+                      true = async
+                      false = sync
+       
+        send()        It will send the request to server.
+
+        onReadyStateChange    It is a function that executes on server to fetch data
+                             or to send data.
+
+        readyState    It will define the status of task
+
+                    0        Initial state
+                    1        request sent
+                    2        request processed
+                    3        request success
+                    4        response ready
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var http = new XMLHttpRequest();
+        function HelpClick(){
+           
+            http.open("GET","../data/help.txt",true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(http.readyState==4){
+                    document.querySelector("p").innerHTML = `<pre>${http.responseText}</pre>`;
+                }
+            }
+        }
+        function LoginClick(){
+            http.open("GET", "../javascript-examples/login.html", true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(http.readyState==4){
+                    document.querySelector("p").innerHTML = http.responseText;
+                }
+            }
+        }
+        function bodyload(){
+            var now = new Date();
+            document.querySelector("div").innerHTML = `Page Fetched on ${now.toString()}`;
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <div></div>
+    <button onclick="HelpClick()">Help</button>
+    <button onclick="LoginClick()">Login</button>
+    <hr size="4" noshade>
+    <p></p>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var http = new XMLHttpRequest();
+        function HelpClick(){
+           
+            http.open("GET","../data/help.txt",true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(http.readyState==4){
+                    document.querySelector("p").innerHTML = `<pre>${http.responseText}</pre>`;
+                }
+            }
+        }
+        function LoginClick(){
+            http.open("GET", "../javascript-examples/login.html", true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(http.readyState==4){
+                    document.querySelector("p").innerHTML = http.responseText;
+                }
+            }
+        }
+        function bodyload(){
+            var now = new Date();
+            document.querySelector("div").innerHTML = `Page Fetched on ${now.toString()}`;
+        }
+        function FetchApi(){
+            http.open("GET","http://fakestoreapi.com/products&quot;, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(http.readyState==4){
+                    var products = JSON.parse(http.responseText);
+                    products.map(product=> {
+                        var ul = document.createElement("ul");
+                        var li = document.createElement("li");
+                        li.innerHTML = product.title;
+                        ul.appendChild(li);
+                        document.querySelector("p").appendChild(ul);
+                    })
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <div></div>
+    <button onclick="HelpClick()">Help</button>
+    <button onclick="LoginClick()">Login</button>
+    <button onclick="FetchApi()">Fetch API</button>
+    <hr size="4" noshade>
+    <p></p>
+</body>
+</html>
+
+                            jQuery
+
+- John Resig introduced jQuery library in 2006.
+- jQuery is designed to "Write less - Do More".
+- Library comprises of all pre-defined methods, which allow to handle DOM manipulation and interactions in short hand way.
+
+> npm  install jquery --save
+
+- JQuery is enabled in page by using the following methods
+
+    <script>
+        $(function(){
+
+            // all your jquery code..
+
+        })
+    </script>
+
+- jQuery uses CSS selectors to select HTML elements
+
+        <div></div>
+        <p id="p1"> </p>
+        <img class="pic">
+
+        $("div").text()  | html()
+        $("#p1").text()
+        $(".pic").src()
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script>
+        $(function(){
+            $("h1").html("jQuery");
+            $("#msg").html("Write less - do more");
+        })
+    </script>
+</head>
+<body>
+    <h1></h1>
+    <p id="msg"></p>
+</body>
+</html>
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script>
+        $(function(){
+            fetch("http://fakestoreapi.com/products/categories&quot;)
+            .then(response=>response.json())
+            .then(categories=> {
+                categories.map(category=>{
+                     $(`<li>${category}</li>`).appendTo("ol");
+                     $(`<option>${category}</option>`).appendTo("select");
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <ol></ol>
+    <select></select>
+</body>
+</html>
+
+jquery Events
+
+    $("button").click(function(){
+
+    })
+
+    <button>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script>
+        $(function(){
+            $("button").click(function(){
+                 fetch("http://fakestoreapi.com/products&quot;)
+                 .then(response=> response.json())
+                 .then(products=>{
+                    products.map(product=>{
+                        $(`<tr>
+                             <td>${product.title}</td>
+                             <td><img width="100" height="100" src=${product.image}></td>
+                             <td>${product.price}</td>
+                            </tr>`
+                         ).appendTo("tbody");
+                    })
+                 })
+            })
+        })
+    </script>
+</head>
+<body>
+    <button>Fetch Data</button>
+    <table width="400" border="1">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Preview</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script>
+        $(function(){
+            $("button").click(function(){
+                $.ajax({
+                    method: "get",
+                    url: "http://fakestoreapi.com/products&quot;,
+                    success: (products)=>{
+                        products.map(product=>{
+                            $(`<tr>
+                             <td>${product.title}</td>
+                             <td><img width="100" height="100" src=${product.image}></td>
+                             <td>${product.price}</td>
+                            </tr>`
+                            ).appendTo("tbody");
+                        })
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <button>Fetch Data</button>
+    <table width="400" border="1">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Preview</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+</html>
